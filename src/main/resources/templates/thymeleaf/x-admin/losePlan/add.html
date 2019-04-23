@@ -23,65 +23,47 @@
   <body>
     <div class="x-body layui-anim layui-anim-up">
         <form class="layui-form">
-        	<input type="hidden" name="roles" th:value="${userType}"/>
+        
           <div class="layui-form-item">
               <label for="L_email" class="layui-form-label">
-                  <span class="x-red">*</span>用户全名
+                  <span class="x-red">*</span>主题
               </label>
               <div class="layui-input-inline">
-                  <input type="text" id="L_userfullname" name="fullname" lay-verify="required"
+                  <input type="text" id="L_userfullname" name="plantitle" lay-verify="required"
                   autocomplete="off" class="layui-input"/>
               </div>
           </div>
+          
           <div class="layui-form-item">
               <label for="L_username" class="layui-form-label">
-                  <span class="x-red">*username</span>
+                  <span class="x-red">*内容</span>
               </label>
               <div class="layui-input-inline">
-                  <input type="text" id="L_username" name="username" required="" lay-verify="required"
-                  autocomplete="off" class="layui-input"/>
-              </div>
-              <div class="layui-form-mid layui-word-aux">
-                  <span class="x-red">*</span>将会成为您唯一的登入名
+                  <textarea name="plancontent" id="test" cols="50" rows="4" style="width:400px;height:100px;"></textarea>
               </div>
           </div>
-          <div class="layui-form-item">
-              <label for="L_pass" class="layui-form-label">
-                  <span class="x-red">*</span>密码
-              </label>
-              <div class="layui-input-inline">
-                  <input type="password" id="L_password" name="password" required="" lay-verify="required"
-                  autocomplete="off" class="layui-input"/>
-              </div>
-              <div class="layui-form-mid layui-word-aux">
-                  6到16个字符
-              </div>
-          </div>
+          
           <div class="layui-form-item">
               <label for="L_email" class="layui-form-label">
-                  <span class="x-red"></span>电话
+                  <span class="x-red"></span>身体部位
               </label>
               <div class="layui-input-inline">
-                  <input type="text" id="L_phone" name="phone" lay-verify="required"
-                  autocomplete="off" class="layui-input"/>
+              	<select name="bodylocation" >
+              		<option th:each="body:${bodys}" th:text="${body}" th:value="${body}"></option>
+              	</select>
               </div>
           </div>
+          
           <div class="layui-form-item">
               <label for="L_email" class="layui-form-label">
-                  <span class="x-red"></span>邮箱
+                  <span class="x-red"></span>BMI指数
               </label>
               <div class="layui-input-inline">
-                  <input type="text" id="L_email" name="email" lay-verify="email"
-                  autocomplete="off" class="layui-input"/>
+              	<select name="healthRadix" >
+              		<option th:each="bmi:${bmis}" th:text="${bmi}" th:value="${bmi}"></option>
+              	</select>
               </div>
           </div>
-          <div class="layui-form-item">
-		    <label class="layui-form-label">性别</label>
-		    <div class="layui-input-block">
-		      <input type="radio" name="sex" value="男" title="男"/>
-		      <input type="radio" name="sex" value="女" title="女" checked="checked"/>
-		    </div>
-		  </div>
           <div class="layui-form-item">
               <label for="L_repass" class="layui-form-label">
               </label>
