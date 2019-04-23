@@ -5,6 +5,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+/**
+ * 用户身体信息
+ * 
+ * @author Administrator
+ *
+ */
 @Entity
 public class UserHealthInfo {
 	@Id

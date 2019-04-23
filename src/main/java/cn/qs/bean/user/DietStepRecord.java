@@ -19,13 +19,17 @@ public class DietStepRecord {
 	private String creatorusername;
 
 	private String breakfast;// 早餐
+	private Float breakfastheat;// 早餐热量
 	private String lunch;// 午餐
-	private String dinner;// 晚安
+	private Float lunchheat;// 午餐热量
+	private String dinner;// 晚餐
+	private Float dinnerheat;// 晚餐热量
 
+	private Float sportnumber;// 运动时长
 	private Integer stepnumber;// 步数
 	private Integer stepsequence;// 同一天步数排名(定时任务去修改)
 
-	private Float sportnumber;
+	private String recommendvider;// 推荐视频
 
 	private String remark;
 
@@ -99,5 +103,37 @@ public class DietStepRecord {
 
 	public void setSportnumber(Float sportnumber) {
 		this.sportnumber = sportnumber;
+	}
+
+	public Float getBreakfastheat() {
+		return breakfastheat;
+	}
+
+	public void setBreakfastheat(Float breakfastheat) {
+		this.breakfastheat = breakfastheat;
+	}
+
+	public Float getLunchheat() {
+		return lunchheat;
+	}
+
+	public void setLunchheat(Float lunchheat) {
+		this.lunchheat = lunchheat;
+	}
+
+	public Float getDinnerheat() {
+		return dinnerheat;
+	}
+
+	public void setDinnerheat(Float dinnerheat) {
+		this.dinnerheat = dinnerheat;
+	}
+
+	public String getRecommendvider() {
+		return recommendvider;
+	}
+
+	public void setRecommendvider(String recommendvider) {
+		this.recommendvider = recommendvider;
 	}
 }
