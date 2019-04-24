@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.collections.MapUtils;
+import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,13 +17,15 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
-import cn.qs.bean.common.LosePlan;
-import cn.qs.service.common.LosePlanService;
+import cn.qs.bean.common.Video;
+import cn.qs.service.common.VideoService;
 import cn.qs.utils.DefaultValue;
+import cn.qs.utils.FileHandleUtil;
 import cn.qs.utils.JSONResultUtil;
 import cn.qs.utils.SystemUtils;
 import cn.qs.utils.UUIDUtil;
@@ -35,13 +38,13 @@ import cn.qs.utils.ValidateCheck;
  *
  */
 @Controller
-@RequestMapping("losePlan")
-public class LosePlanController {
-	private static final Logger logger = LoggerFactory.getLogger(LosePlanController.class);
-	private String baseFilePath = "losePlan";
+@RequestMapping("video")
+public class VideoController {
+	private static final Logger logger = LoggerFactory.getLogger(VideoController.class);
+	private String baseFilePath = "video";
 
 	@Autowired
-	private LosePlanService losePlanService;
+	private VideoService videoService;
 
 	/**
 	 * 跳转到显示列表
@@ -66,26 +69,40 @@ public class LosePlanController {
 		return baseFilePath + "/add";
 	}
 
-	/**
-	 * 保存数据
-	 * 
-	 * @param plan
-	 * @return
-	 */
-	@RequestMapping("doAdd")
+	@RequestMapping("/doAdd")
 	@ResponseBody
-	public JSONResultUtil doAdd(LosePlan plan, HttpServletRequest request) {
-		plan.setId(UUIDUtil.getUUID2());
-		plan.setCreatetime(new Date());
-		plan.setCreatorusername(SystemUtils.getLoginUsername(request));
+	public JSONResultUtil<String> doAdd(MultipartFile file, Video video, HttpServletRequest request) {
+		if (file == null) {
+			return JSONResultUtil.error("文件接收失败");
+		}
+		logger.debug("file -> {},viewId ->{}", file.getOriginalFilename());
 
-		losePlanService.add(plan);
+		String fileOriName = file.getOriginalFilename();// 获取原名称
+		String fileNowName = UUIDUtil.getUUID2() + "." + FilenameUtils.getExtension(fileOriName);// 生成唯一的名字
+		try {
+			FileHandleUtil.uploadSpringMVCFile(file, fileNowName);
+
+		} catch (Exception e) {
+			logger.error("uploadPicture error", e);
+			return JSONResultUtil.error("文件接收失败");
+		}
+
+		String id = UUIDUtil.getUUID();
+		video.setCreatetime(new Date());
+		video.setCreatorusername(SystemUtils.getLoginUsername(request));
+		video.setId(id);
+		video.setFilesize((float) file.getSize());
+		video.setOriname(fileOriName);
+		video.setPath(fileNowName);
+
+		videoService.add(video);
+
 		return JSONResultUtil.ok();
 	}
 
 	@RequestMapping("pages")
 	@ResponseBody
-	public PageInfo<LosePlan> pages(@RequestParam Map condition) {
+	public PageInfo<Video> pages(@RequestParam Map condition) {
 		int pageNum = 1;
 		if (ValidateCheck.isNotNull(MapUtils.getString(condition, "pageNum"))) { // 如果不为空的话改变当前页号
 			pageNum = MapUtils.getInteger(condition, "pageNum");
@@ -97,13 +114,13 @@ public class LosePlanController {
 
 		// 开始分页
 		PageHelper.startPage(pageNum, pageSize);
-		List<LosePlan> useplans = new ArrayList<LosePlan>();
+		List<Video> videos = new ArrayList<Video>();
 		try {
-			useplans = losePlanService.listByCondition(condition);
+			videos = videoService.listByCondition(condition);
 		} catch (Exception e) {
 			logger.error("getUsers error！", e);
 		}
-		PageInfo<LosePlan> pageInfo = new PageInfo<LosePlan>(useplans);
+		PageInfo<Video> pageInfo = new PageInfo<Video>(videos);
 
 		return pageInfo;
 	}
@@ -111,14 +128,14 @@ public class LosePlanController {
 	@RequestMapping("delete")
 	@ResponseBody
 	public JSONResultUtil delete(String id) {
-		losePlanService.delete(id);
+		videoService.delete(id);
 		return JSONResultUtil.ok();
 	}
 
 	@RequestMapping("update")
 	public String update(String id, ModelMap map, HttpServletRequest request) {
-		LosePlan plan = losePlanService.findById(id);
-		map.addAttribute("plan", plan);
+		Video video = videoService.findById(id);
+		map.addAttribute("video", video);
 		map.put("bodys", DefaultValue.BODY_LOCATIONS);
 		map.put("bmis", DefaultValue.BMI_VALUES);
 
@@ -127,8 +144,14 @@ public class LosePlanController {
 
 	@RequestMapping("doUpdate")
 	@ResponseBody
-	public JSONResultUtil doUpdate(LosePlan plan) {
-		losePlanService.update(plan);
+	public JSONResultUtil doUpdate(Video plan) {
+		videoService.update(plan);
 		return JSONResultUtil.ok();
+	}
+
+	@RequestMapping("watchVideo")
+	public String watchVideo(String path, ModelMap map) {
+		map.put("path", path);
+		return baseFilePath + "/watchVideo";
 	}
 }

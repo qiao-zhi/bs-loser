@@ -17,7 +17,7 @@
     
     <!--自己写的JS  -->
     <script type="text/javascript" th:src="${#httpServletRequest.getContextPath()+'/static/x-admin/MyJs/PublicFunctions.js'}"></script>
-    <script type="text/javascript" th:src="${#httpServletRequest.getContextPath()+'/static/x-admin/MyJs/loseplan_list.js'}"></script>
+    <script type="text/javascript" th:src="${#httpServletRequest.getContextPath()+'/static/x-admin/MyJs/video.js'}"></script>
     
     <span th:if="${session.user.username} eq 'admin'">
     	<script>
@@ -50,20 +50,20 @@
       </div>
       <xblock>
      	 <span th:if="${session.user.username} eq 'admin'">
-       		 <button class="layui-btn" onclick="x_admin_show('添加套餐','/losePlan/add.html',600,400)"><i class="layui-icon"></i>添加</button>
+       		 <button class="layui-btn" onclick="x_admin_show('录入视频','/video/add.html',600,400)"><i class="layui-icon"></i>添加</button>
         </span>
-        <span class="x-right" style="line-height:40px">套餐列表</span>
+        <span class="x-right" style="line-height:40px">个人计划列表</span>
       </xblock>
       <table class="layui-table">
         <thead>
           <tr>
             <th>序号</th>
-            <th>ID</th>
-            <th>上传者</th>
-            <th>主题</th>
-            <th>内容</th>
-            <th>适用BMI</th>
+            <th>上传人</th>
+            <th>文件名称</th>
+            <th>文件路径</th>
+            <th>上传日期</th>
             <th>适用身体部位</th>
+            <th>适用BMI</th>
             <th>操作</th></tr>
         </thead>
         <tbody id="listTbody">

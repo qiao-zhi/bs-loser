@@ -18,78 +18,74 @@
   
   <body>
     <div class="x-body layui-anim layui-anim-up">
-        <form class="layui-form">
-        
-          <div class="layui-form-item">
-              <label for="L_email" class="layui-form-label">
-                  <span class="x-red">*</span>标题
-              </label>
-              <div class="layui-input-inline">
-                  <input type="text" id="L_userfullname" name="plantitle" lay-verify="required"
-                  autocomplete="off" class="layui-input"/>
-              </div>
-          </div>
-          
-          <div class="layui-form-item">
-              <label for="L_username" class="layui-form-label">
-                  <span class="x-red">*</span>计划内容
-              </label>
-              <div class="layui-input-inline">
-                  <textarea name="plancontent" id="test" cols="50" rows="4" style="width:400px;height:100px;"></textarea>
-              </div>
-          </div>
+        <form class="layui-form" id="uploadFile" method="post" enctype="application/x-www-form-urlencoded">
           
           <div class="layui-form-item">
               <label for="L_email" class="layui-form-label">
-                  <span class="x-red"></span>完成情况
+                  <span class="x-red"></span>身体部位
               </label>
               <div class="layui-input-inline">
-              	<select name="hasfinished" >
-              		<option th:each="finish:${finishs}" th:text="${finish}" th:value="${finish}"></option>
+              	<select name="bodylocation" >
+              		<option th:each="body:${bodys}" th:text="${body}" th:value="${body}"></option>
               	</select>
               </div>
           </div>
           
           <div class="layui-form-item">
-              <label for="L_username" class="layui-form-label">
-                  <span class="x-red">*</span>日期
+              <label for="L_email" class="layui-form-label">
+                  <span class="x-red"></span>BMI指数
               </label>
               <div class="layui-input-inline">
-                  <input type="text" name="plandate" class="layui-input" id="plandateText"/>
+              	<select name="healthRadix" >
+              		<option th:each="bmi:${bmis}" th:text="${bmi}" th:value="${bmi}"></option>
+              	</select>
+              </div>
+          </div>
+          
+          <div class="layui-form-item">
+              <label for="L_email" class="layui-form-label">
+                  <span class="x-red"></span>视频
+              </label>
+              <div class="layui-input-inline">
+              	<input type="text" class="layui-input" id="videoFileNameDisplay"/>
               </div>
           </div>
           
           <div class="layui-form-item">
               <label for="L_repass" class="layui-form-label">
               </label>
-              <button  class="layui-btn" lay-filter="add" lay-submit="">
-                  增加
+              <button type="button" class="layui-btn" id="uploadUrl">
+                  	增加
               </button>
           </div>
       </form>
     </div>
     <script>
-        layui.use(['form','layer','laydate'], function(){
-          $ = layui.jquery;
-          var form = layui.form,layer = layui.layer;
-          
-          var laydate = layui.laydate;
-          //执行一个laydate实例
-             //同时绑定多个
-	    lay('#plandateText').each(function(){
-	        laydate.render({
-	            elem: this,
-	            format:'yyyy-MM-dd',
-	            type:'date',
-	            trigger: 'click'
-	        });
-	    });
-        
-          //监听提交
-          form.on('submit(add)', function(data){
-       	    //异步提交数据
-       	    $.post("/userLosePlan/doAdd.html",data.field,function(response){
-       	    	if(response.success == true){
+    layui.use(['upload','layer'],function () {
+        var upload = layui.upload,layer = layui.layer;
+        var uploadInst = upload.render({
+            elem: '#videoFileNameDisplay',//绑定的元素
+            url:'/video/doAdd.do',//提交的url
+            auto:false,//是否自动上传
+            bindAction: '#uploadUrl', //指向一个按钮触发上传
+            accept:"video",//指定允许上传的文件类型
+            acceptMime:"video/*",
+            size:1048576,
+            multiple:false,//支持多文件上传
+            choose:function(obj){
+                obj.preview(function(index, file, result){
+                	$("#videoFileNameDisplay").val(file.name);
+                });
+            },
+            before: function(obj){
+                this.data={
+                		"bodylocation": $("[name='bodylocation']").val(),
+                		"healthRadix": $("[name='healthRadix']").val()
+                	};//携带额外的数据
+                //预读本地文件示例，不支持ie8
+            },
+            done: function(response, index, upload){ //假设code=0代表上传成功
+     	    	if(response.success == true){
        	    	  layer.msg("增加成功", {icon: 6},function () {
                       // 获得frame索引
                       var index = parent.layer.getFrameIndex(window.name);
@@ -101,13 +97,9 @@
        	    	}else{
        	    		layer.alert(response.msg);
        	    	}
-       	    });
-          
-            return false;
-          });
-          
-          
+            }
         });
+    })
     </script>
   </body>
 

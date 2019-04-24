@@ -11,8 +11,9 @@
     <link rel="shortcut icon" th:href="${#httpServletRequest.getContextPath()+'/static/x-admin/favicon.ico'}" type="image/x-icon" />
     <link rel="stylesheet" th:href="${#httpServletRequest.getContextPath()+'/static/x-admin/css/font.css'}"/>
 	<link rel="stylesheet" th:href="${#httpServletRequest.getContextPath()+'/static/x-admin/css/xadmin.css'}"/>
-    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-    <script th:src="${#httpServletRequest.getContextPath()+'/static/x-admin/lib/layui/layui.js'}" charset="utf-8"></script>
+	
+    <script type="text/javascript" th:src="${#httpServletRequest.getContextPath()+'/static/js/jquery.min.js'}"></script>
+    <script type="text/javascript" th:src="${#httpServletRequest.getContextPath()+'/static/x-admin/lib/layui/layui.js'}"></script>
     <script type="text/javascript" th:src="${#httpServletRequest.getContextPath()+'/static/x-admin/js/xadmin.js'}"></script>
     
     <!--自己写的JS  -->
@@ -37,7 +38,8 @@
              <!--  <dd><a onclick="x_admin_show('个人信息','http://www.baidu.com')">个人信息</a></dd>
               <dd><a onclick="x_admin_show('切换帐号','http://www.baidu.com')">切换帐号</a></dd> -->
               <dd><a href="/logout.html"  th:href="${#httpServletRequest.getContextPath()+'/logout.html'}">退出</a></dd>
-              <dd th:if="${session.user.username} ne 'admin'"><a href="javascript:void(0)"  onclick="updateUser();">个人信息</a></dd>
+              <dd th:if="${session.user.username} ne 'admin'"><a href="javascript:void(0)"  onclick="updateUser();">账户信息</a></dd>
+              <dd th:if="${session.user.username} ne 'admin'"><a href="javascript:void(0)"  onclick="updateUserHealthinfo();">个人信息</a></dd>
             </dl>
           </li>
           <!-- <li class="layui-nav-item to-index"><a href="/preIndex.html">前台首页</a></li> -->
@@ -122,6 +124,22 @@
                 </ul>
             </li>
             
+             <li>
+                <a href="javascript:;">
+                    <i class="iconfont">&#59042;</i>
+                    <cite>视频管理</cite>
+                    <i class="iconfont nav_right">&#xe697;</i>
+                </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a _href="/video/list.html">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>视频列表</cite>
+                        </a>
+                    </li >
+                </ul>
+            </li>
+            
         </ul>
       </div>
     </div>
@@ -152,6 +170,11 @@
 	    function updateUser(id){
 	    	var url = '/user/updateUser.html?from=personal';
 	    	x_admin_show('修改用户',url,600,400);
+	    }
+	    
+	    function updateUserHealthinfo(){
+	    	var url = '/userHealth/update.html';
+	    	x_admin_show('个人信息',url,600,400);
 	    }
     </script>
 </body>

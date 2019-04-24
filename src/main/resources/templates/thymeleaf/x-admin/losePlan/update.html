@@ -10,83 +10,61 @@
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" th:href="${#httpServletRequest.getContextPath()+'/static/x-admin/css/font.css'}"/>
     <link rel="stylesheet" th:href="${#httpServletRequest.getContextPath()+'/static/x-admin/css/xadmin.css'}"/>
-    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    
+    <script type="text/javascript" th:src="${#httpServletRequest.getContextPath()+'/static/js/jquery.min.js'}"></script>
     <script type="text/javascript" th:src="${#httpServletRequest.getContextPath()+'/static/x-admin/lib/layui/layui.js'}" charset="utf-8"></script>
     <script type="text/javascript" th:src="${#httpServletRequest.getContextPath()+'/static/x-admin/js/xadmin.js'}"></script>
-    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
-    <!--[if lt IE 9]>
-      <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
-      <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
   </head>
   
   <body>
     <div class="x-body layui-anim layui-anim-up">
-        <form class="layui-form">
-        
-       	  <input type="hidden" th:field="${user.id}"/>
-       	  
+        <form class="layui-form" th:object="${plan}">
+          <input type="hidden" th:field="*{id}"/>
           <div class="layui-form-item">
               <label for="L_email" class="layui-form-label">
-                  <span class="x-red">*</span>用户全名
+                  <span class="x-red">*</span>主题
               </label>
               <div class="layui-input-inline">
-                  <input type="text" id="L_userfullname" name="fullname" lay-verify="required"
-                  autocomplete="off" class="layui-input" th:value="${user.fullname}"/>
+                  <input type="text" id="L_userfullname" name="plantitle" lay-verify="required"
+                  autocomplete="off" class="layui-input" th:value="*{plantitle}"/>
               </div>
           </div>
+          
           <div class="layui-form-item">
               <label for="L_username" class="layui-form-label">
-                  <span class="x-red">*username</span>
+                  <span class="x-red">*</span>内容
               </label>
               <div class="layui-input-inline">
-                  <input type="text" id="L_username" name="username" readonly="readonly" required="" lay-verify="required"
-                  autocomplete="off" class="layui-input" th:value="${user.username}"/>
-              </div>
-              <div class="layui-form-mid layui-word-aux">
-                  <span class="x-red">*</span>您唯一的登入名
+                  <textarea name="plancontent" id="test" cols="50" rows="4" style="width:400px;height:100px;" 
+                  	th:text="*{plancontent}"></textarea>
               </div>
           </div>
-          <div class="layui-form-item">
-              <label for="L_username" class="layui-form-label">
-                  <span class="x-red"></span>password
-              </label>
-              <div class="layui-input-inline">
-                  <input type="password" id="L_password" name="password" required=""
-                  autocomplete="off" class="layui-input"/>
-              </div>
-          </div>
+          
           <div class="layui-form-item">
               <label for="L_email" class="layui-form-label">
-                  <span class="x-red"></span>电话
+                  <span class="x-red"></span>身体部位
               </label>
               <div class="layui-input-inline">
-                  <input type="text" id="L_phone" name="phone" lay-verify="required"
-                  autocomplete="off" class="layui-input" th:value="${user.phone}"/>
+              	<select name="bodylocation" >
+              		<option th:each="body:${bodys}" th:text="${body}" th:value="${body}" th:selected="${plan.bodylocation eq body}"></option>
+              	</select>
               </div>
           </div>
+          
           <div class="layui-form-item">
               <label for="L_email" class="layui-form-label">
-                  <span class="x-red"></span>邮箱
+                  <span class="x-red"></span>BMI指数
               </label>
               <div class="layui-input-inline">
-                  <input type="text" id="L_phone" name="email" lay-verify="required"
-                  autocomplete="off" class="layui-input" th:value="${user.email}"/>
+              	<select name="healthRadix" >
+              		<option th:each="bmi:${bmis}" th:text="${bmi}" th:value="${bmi}" th:selected="${plan.healthRadix eq bmi}"></option>
+              	</select>
               </div>
           </div>
-          <div class="layui-form-item">
-		    <label class="layui-form-label">性别</label>
-		    <div class="layui-input-block">
-		      <input type="radio" name="sex" value="男" title="男" th:checked="${user.sex eq '男'}"/>
-		      <input type="radio" name="sex" value="女" title="女" th:checked="${user.sex eq '女'}"/>
-		    </div>
-		  </div>
           <div class="layui-form-item">
               <label for="L_repass" class="layui-form-label">
               </label>
-              <button  class="layui-btn" lay-filter="add" lay-submit="">
-                  修改
-              </button>
+              <button  class="layui-btn" lay-filter="update" lay-submit="">修改</button>
           </div>
       </form>
     </div>
@@ -103,9 +81,9 @@
           ,layer = layui.layer;
         
           //监听提交
-          form.on('submit(add)', function(data){
+          form.on('submit(update)', function(data){
        	    //异步提交数据
-       	    $.post("/user/doUpdateUser.html",data.field,function(response){
+       	    $.post("/losePlan/doUpdate.html",data.field,function(response){
        	    	if(response.success == true){
        	    	  layer.msg("修改成功", {icon: 6},function () {
                       // 获得frame索引
@@ -122,7 +100,6 @@
           
             return false;
           });
-          
           
         });
     </script>

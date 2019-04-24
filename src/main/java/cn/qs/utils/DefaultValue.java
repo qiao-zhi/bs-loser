@@ -30,14 +30,22 @@ public class DefaultValue {
 
 	public static final List<String> BMI_VALUES = new ArrayList<String>();
 
+	public static final List<String> FINISH_DATAILS = new ArrayList<String>();
+
 	static {
+		BODY_LOCATIONS.add("*");
 		BODY_LOCATIONS.add("脸部");
 		BODY_LOCATIONS.add("臀部");
 		BODY_LOCATIONS.add("腿部");
 		BODY_LOCATIONS.add("上身");
 
+		BMI_VALUES.add("*");
 		BMI_VALUES.add("0-50");
 		BMI_VALUES.add("50-100");
+
+		FINISH_DATAILS.add("未开始");
+		FINISH_DATAILS.add("进行中");
+		FINISH_DATAILS.add("已完成");
 	}
 
 }

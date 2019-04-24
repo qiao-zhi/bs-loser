@@ -10,13 +10,14 @@
     <link rel="shortcut icon" href="/static/x-admin/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" th:href="${#httpServletRequest.getContextPath()+'/static/x-admin/css/font.css'}"/>
     <link rel="stylesheet" th:href="${#httpServletRequest.getContextPath()+'/static/x-admin/css/xadmin.css'}"/>
-    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    
+    <script type="text/javascript" th:src="${#httpServletRequest.getContextPath()+'/static/js/jquery.min.js'}"></script>
     <script type="text/javascript" th:src="${#httpServletRequest.getContextPath()+'/static/x-admin/lib/layui/layui.all.js'}" charset="utf-8"></script>
     <script type="text/javascript" th:src="${#httpServletRequest.getContextPath()+'/static/x-admin/js/xadmin.js'}"></script>
     
     <!--自己写的JS  -->
     <script type="text/javascript" th:src="${#httpServletRequest.getContextPath()+'/static/x-admin/MyJs/PublicFunctions.js'}"></script>
-    <script type="text/javascript" th:src="${#httpServletRequest.getContextPath()+'/static/x-admin/MyJs/user_list.js'}"></script>
+    <script type="text/javascript" th:src="${#httpServletRequest.getContextPath()+'/static/x-admin/MyJs/userLoseplan.js'}"></script>
     
     <span th:if="${session.user.username} eq 'admin'">
     	<script>
@@ -38,41 +39,39 @@
     </div>
     <div class="x-body">
       <div class="layui-row">
-        <form class="layui-form layui-col-md12 x-so" id="queryUserForm">
+        <form class="layui-form layui-col-md12 x-so" id="queryForm">
           <!--隐藏当前页和页号-->
           <input type="hidden" name="pageNum"/>
           <input type="hidden" name="pageSize"/>
           <input type="text" name="username"  placeholder="请输入用户名" autocomplete="off" class="layui-input"/>
-          <button class="layui-btn" type="button" onclick="queryUsersFY()"><i class="layui-icon">&#xe615;</i></button>
+          <button class="layui-btn" type="button" onclick="queryFY()"><i class="layui-icon">&#xe615;</i></button>
           <button class="layui-btn layui-btn-normal" type="button" onclick='clearQueryCondition(this)' title="点击重置查询条件"><i class="layui-icon">&#xe639;</i></button>
         </form>
       </div>
       <xblock>
      	 <span th:if="${session.user.username} eq 'admin'">
-       		 <button class="layui-btn" onclick="x_admin_show('添加用户','./user-add.html',600,400)"><i class="layui-icon"></i>添加</button>
+       		 <button class="layui-btn" onclick="x_admin_show('添加计划','/userLosePlan/add.html',600,400)"><i class="layui-icon"></i>添加</button>
         </span>
-        <span class="x-right" style="line-height:40px">用户列表</span>
+        <span class="x-right" style="line-height:40px">个人计划列表</span>
       </xblock>
       <table class="layui-table">
         <thead>
           <tr>
             <th>序号</th>
             <th>ID</th>
-            <th>username</th>
-            <th>用户名</th>
-            <th>性别</th>
-            <th>邮箱</th>
-            <th>电话</th>
-            <th>创建时间</th>
+            <th>标题</th>
+            <th>内容</th>
+            <th>日期</th>
+            <th>完成情况</th>
             <th>操作</th></tr>
         </thead>
-        <tbody id="memberTbody">
+        <tbody id="listTbody">
         </tbody>
       </table>
       
-     <!--分页-->
+    	<!--分页-->
         <div id="pageDiv"></div>
-     <!--end 分页-->
+    	<!--end 分页-->
 
     </div>
   </body>

@@ -18,79 +18,52 @@
   
   <body>
     <div class="x-body layui-anim layui-anim-up">
-        <form class="layui-form">
-        
+        <form class="layui-form" th:object="${video}">
+          <input type="hidden" th:field="*{id}"/>
           <div class="layui-form-item">
               <label for="L_email" class="layui-form-label">
-                  <span class="x-red">*</span>标题
+                  <span class="x-red"></span>身体部位
               </label>
               <div class="layui-input-inline">
-                  <input type="text" id="L_userfullname" name="plantitle" lay-verify="required"
-                  autocomplete="off" class="layui-input"/>
-              </div>
-          </div>
-          
-          <div class="layui-form-item">
-              <label for="L_username" class="layui-form-label">
-                  <span class="x-red">*</span>计划内容
-              </label>
-              <div class="layui-input-inline">
-                  <textarea name="plancontent" id="test" cols="50" rows="4" style="width:400px;height:100px;"></textarea>
-              </div>
-          </div>
-          
-          <div class="layui-form-item">
-              <label for="L_email" class="layui-form-label">
-                  <span class="x-red"></span>完成情况
-              </label>
-              <div class="layui-input-inline">
-              	<select name="hasfinished" >
-              		<option th:each="finish:${finishs}" th:text="${finish}" th:value="${finish}"></option>
+              	<select name="bodylocation" >
+              		<option th:each="body:${bodys}" th:text="${body}" th:value="${body}" th:selected="${video.bodylocation eq body}"></option>
               	</select>
               </div>
           </div>
           
           <div class="layui-form-item">
-              <label for="L_username" class="layui-form-label">
-                  <span class="x-red">*</span>日期
+              <label for="L_email" class="layui-form-label">
+                  <span class="x-red"></span>BMI指数
               </label>
               <div class="layui-input-inline">
-                  <input type="text" name="plandate" class="layui-input" id="plandateText"/>
+              	<select name="healthRadix" >
+              		<option th:each="bmi:${bmis}" th:text="${bmi}" th:value="${bmi}" th:selected="${video.healthRadix eq bmi}"></option>
+              	</select>
               </div>
           </div>
-          
           <div class="layui-form-item">
               <label for="L_repass" class="layui-form-label">
               </label>
-              <button  class="layui-btn" lay-filter="add" lay-submit="">
-                  增加
-              </button>
+              <button  class="layui-btn" lay-filter="update" lay-submit="">修改</button>
           </div>
       </form>
     </div>
+    
+    <!--JS 定义的上下文 -->
+    <script th:inline="javascript">     
+        var contextPath= [[@{/}]];      
+	</script>
+	
     <script>
-        layui.use(['form','layer','laydate'], function(){
-          $ = layui.jquery;
-          var form = layui.form,layer = layui.layer;
-          
-          var laydate = layui.laydate;
-          //执行一个laydate实例
-             //同时绑定多个
-	    lay('#plandateText').each(function(){
-	        laydate.render({
-	            elem: this,
-	            format:'yyyy-MM-dd',
-	            type:'date',
-	            trigger: 'click'
-	        });
-	    });
+	    layui.use(['form','layer'], function(){
+	        var form = layui.form,layer = layui.layer;
         
           //监听提交
-          form.on('submit(add)', function(data){
+          form.on('submit(update)', function(data){
        	    //异步提交数据
-       	    $.post("/userLosePlan/doAdd.html",data.field,function(response){
+       	    $.post("/video/doUpdate.html",data.field,function(response){
        	    	if(response.success == true){
-       	    	  layer.msg("增加成功", {icon: 6},function () {
+       	    	  layer.msg("修改成功", {icon: 6},function () {
                       // 获得frame索引
                       var index = parent.layer.getFrameIndex(window.name);
                       //关闭当前frame
@@ -105,7 +78,6 @@
           
             return false;
           });
-          
           
         });
     </script>
