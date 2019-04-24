@@ -1,7 +1,9 @@
 package cn.qs.utils;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 默认值
@@ -32,6 +34,13 @@ public class DefaultValue {
 
 	public static final List<String> FINISH_DATAILS = new ArrayList<String>();
 
+	/**
+	 * 食物热量表
+	 */
+	public static final Map<String, Object> FOODS_HEAT = new HashMap<String, Object>();
+
+	public static final Map<String, Object> SPORT_K = new HashMap<String, Object>();
+
 	static {
 		BODY_LOCATIONS.add("*");
 		BODY_LOCATIONS.add("脸部");
@@ -40,12 +49,22 @@ public class DefaultValue {
 		BODY_LOCATIONS.add("上身");
 
 		BMI_VALUES.add("*");
-		BMI_VALUES.add("0-50");
-		BMI_VALUES.add("50-100");
+		BMI_VALUES.add("0-18.4");
+		BMI_VALUES.add("18.5-23.9");
+		BMI_VALUES.add("24.0-27.9");
+		BMI_VALUES.add("28.0-100000");
 
 		FINISH_DATAILS.add("未开始");
 		FINISH_DATAILS.add("进行中");
 		FINISH_DATAILS.add("已完成");
+
+		FOODS_HEAT.put("紫薯营养粥-317 大卡(每100克)", "317");
+		FOODS_HEAT.put("大米-317 大卡(每100克)", "317");
+		FOODS_HEAT.put("面条-301 大卡(每100克)", "301");
+		FOODS_HEAT.put("面包-313 大卡(每100克)", "313");
+
+		SPORT_K.put("健走", 0.824F);
+		SPORT_K.put("跑步", 1.036F);
 	}
 
 }
