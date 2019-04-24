@@ -26,7 +26,7 @@
               </label>
               <div class="layui-input-inline">
                   <input type="text" name="foods" autocomplete="off" class="layui-input"
-                  	th:each="entry:${foods}" th:placeholder="${entry.key}" th:class="entry.value" onchange=""/>
+                  	th:each="entry:${foods}" th:placeholder="${entry.key}" onchange="setValAddFood(this)"/>
               </div>
           </div>
         
@@ -79,6 +79,13 @@
           
           
         });
+        
+        function setValAddFood(obj){
+        	var classVal=$(obj).attr("placeholder");
+        	var value = $(obj).val();
+        	var foodName = classVal.substring(0,classVal.indexOf("-"));
+        	$(obj).val(foodName+"-"+value);
+        }
     </script>
   </body>
 
