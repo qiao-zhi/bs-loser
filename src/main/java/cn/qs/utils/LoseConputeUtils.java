@@ -6,11 +6,15 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.lang.math.FloatRange;
 import org.apache.commons.lang.math.NumberUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import cn.qs.bean.user.DietStepRecord;
+import cn.qs.bean.user.UserHealthInfo;
+import cn.qs.service.user.UserHealthService;
 
 /**
  * 计算BMI基数和根据基数计算体型的工具类
@@ -81,7 +85,7 @@ public class LoseConputeUtils {
 	 * 
 	 * @param dietStepRecord
 	 */
-	public static void setSportsHeatAndDietsHeats(DietStepRecord dietStepRecord) {
+	public static void setSportsHeatAndDietsHeats(DietStepRecord dietStepRecord, HttpServletRequest request) {
 		DecimalFormat numberFormat = new DecimalFormat("0.00");
 
 		// 1. 计算摄入热量
@@ -102,9 +106,28 @@ public class LoseConputeUtils {
 				totalHeats += total;
 			}
 		}
-		dietStepRecord.setDiets(numberFormat.format(totalHeats) + "卡路里");
+		dietStepRecord.setDietsheat(numberFormat.format(totalHeats) + "卡路里");
 
 		// 2.计算运动消耗热量
+		// 2.1 获取用户的体重
+		String loginUsername = SystemUtils.getLoginUsername(request);
+		UserHealthService userHealthService = SpringBootUtils.getBean(UserHealthService.class);
+		UserHealthInfo userHealthInfo = userHealthService.findOrCreateUserHealthInfoByUsername(loginUsername);
+		Float height = userHealthInfo.getWeight() == null ? 0F : userHealthInfo.getWeight();
+		// 2.2计算消耗量
 		Float sportsHeats = 0F;
+		String sports = dietStepRecord.getSports();
+		if (StringUtils.isNotBlank(sports)) {
+			String[] split = sports.split(",");
+			for (String s : split) {
+				String[] split2 = s.split("-");
+				String sportName = split2[0];// 运动名称
+				Float distance = NumberUtils.toFloat(split2[1]);// 距离
+				Float kValue = DefaultValue.SPORT_K.get(sportName);// K值
+				Float totalTmp = height * distance * kValue;
+				sportsHeats += totalTmp;
+			}
+		}
+		dietStepRecord.setSportsheat(numberFormat.format(sportsHeats) + "卡路里");
 	}
 }

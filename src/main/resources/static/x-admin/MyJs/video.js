@@ -30,9 +30,14 @@ function showTable(pageInfo){
             +'<td>'+replaceNull(objs[i].bodylocation)+'</td>'
             +'<td>'+replaceNull(objs[i].healthRadix)+'</td>'
             +'<td>';
-    	tr+='<a href=javascript:void(0) title="点击修改用户" onclick="update(\''+objs[i].id+'\')"><i class="layui-icon">&#xe642;</i></a>'
-    		+'<a href=javascript:void(0) title="点击删除该用户" onclick="remove(\''+objs[i].id+'\')"><i class="layui-icon">&#xe640;</i></a>';
-            
+        
+        if("undefined" != typeof admin){
+	    	tr+='<a href=javascript:void(0) title="修改" onclick="update(\''+objs[i].id+'\')"><i class="layui-icon">&#xe642;</i></a>'
+	    		+'<a href=javascript:void(0) title="删除" onclick="remove(\''+objs[i].id+'\')"><i class="layui-icon">&#xe640;</i></a>';
+        }else{
+        	tr += "--";
+        }
+        
     	tr +='</td></tr>'
         $("#listTbody").append(tr);
     }

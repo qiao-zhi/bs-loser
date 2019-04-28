@@ -17,13 +17,7 @@
     
     <!--自己写的JS  -->
     <script type="text/javascript" th:src="${#httpServletRequest.getContextPath()+'/static/x-admin/MyJs/PublicFunctions.js'}"></script>
-    <script type="text/javascript" th:src="${#httpServletRequest.getContextPath()+'/static/x-admin/MyJs/userLoseplan.js'}"></script>
-    
-    <span th:if="${session.user.username} eq 'admin'">
-    	<script>
-    		var admin = true;
-    	</script>
-    </span>
+    <script type="text/javascript" th:src="${#httpServletRequest.getContextPath()+'/static/x-admin/MyJs/dietStep.js'}"></script>
   </head>
   
   <body class="layui-anim layui-anim-up">
@@ -49,20 +43,19 @@
         </form>
       </div>
       <xblock>
-     	 <span th:if="${session.user.username} eq 'admin'">
-       		 <button class="layui-btn" onclick="x_admin_show('添加计划','/dietStep/add.html',600,400)"><i class="layui-icon"></i>添加</button>
-        </span>
-        <span class="x-right" style="line-height:40px">个人计划列表</span>
+    	<button class="layui-btn" onclick="x_admin_show('添加计划','/dietStep/add.html',600,400)"><i class="layui-icon"></i>添加</button>
+        <span class="x-right" style="line-height:40px">个人记录列表</span>
       </xblock>
       <table class="layui-table">
         <thead>
           <tr>
             <th>序号</th>
-            <th>ID</th>
-            <th>标题</th>
-            <th>内容</th>
             <th>日期</th>
-            <th>完成情况</th>
+            <th>饮食</th>
+            <th>摄入热量</th>
+            <th>运动情况(km)</th>
+            <th>消耗热量</th>
+            <th>运动步数</th>
             <th>操作</th></tr>
         </thead>
         <tbody id="listTbody">

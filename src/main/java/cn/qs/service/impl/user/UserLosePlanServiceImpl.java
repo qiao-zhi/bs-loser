@@ -3,6 +3,8 @@ package cn.qs.service.impl.user;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.collections.MapUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,6 +38,10 @@ public class UserLosePlanServiceImpl implements UserLosePlanService {
 	public List<UserLosePlan> listByCondition(Map condition) {
 		UserLosePlanExample losePlanExample = new UserLosePlanExample();
 		Criteria criteria = losePlanExample.createCriteria();
+		String username = MapUtils.getString(condition, "username");
+		if (StringUtils.isNotBlank(username)) {
+			criteria.andCreatorusernameEqualTo(username);
+		}
 
 		return userLosePlanMapper.selectByExample(losePlanExample);
 	}

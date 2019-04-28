@@ -48,10 +48,8 @@
           <button class="layui-btn layui-btn-normal" type="button" onclick='clearQueryCondition(this)' title="点击重置查询条件"><i class="layui-icon">&#xe639;</i></button>
         </form>
       </div>
-      <xblock>
-     	 <span th:if="${session.user.username} eq 'admin'">
-       		 <button class="layui-btn" onclick="x_admin_show('添加套餐','/losePlan/add.html',600,400)"><i class="layui-icon"></i>添加</button>
-        </span>
+      <xblock th:if="${session.user.username} eq 'admin'">
+       	<button class="layui-btn" onclick="x_admin_show('添加套餐','/losePlan/add.html',600,400)"><i class="layui-icon"></i>添加</button>
         <span class="x-right" style="line-height:40px">套餐列表</span>
       </xblock>
       <table class="layui-table">

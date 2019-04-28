@@ -2,6 +2,7 @@ package cn.qs.controller.system;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.qs.bean.user.User;
 import cn.qs.service.user.UserService;
+import cn.qs.utils.FileHandleUtil;
 import cn.qs.utils.JSONResultUtil;
 
 /**
@@ -44,7 +46,9 @@ public class LoginController {
 	@ResponseBody
 	public JSONResultUtil doLogin(String username, String password, HttpSession session) {
 		User loginUser = null;
-		if ("admin".equals(username) && "admin".equals(password)) {
+		String adminPassword = StringUtils.defaultIfBlank(FileHandleUtil.getValue("application", "adminPassword"),
+				"admin");
+		if ("admin".equals(username) && adminPassword.equals(password)) {
 			loginUser = new User();
 			loginUser.setFullname("系统管理员");
 			loginUser.setUsername("admin");

@@ -11,6 +11,5 @@ public class MySpringBootApplication {
 	public static void main(String[] args) {
 		// 入口运行类
 		SpringApplication.run(MySpringBootApplication.class, args);
-		String string = "111";
 	}
 }

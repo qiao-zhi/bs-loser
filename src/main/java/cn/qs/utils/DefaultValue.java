@@ -51,7 +51,7 @@ public class DefaultValue {
 	/**
 	 * 运动系数
 	 */
-	public static final Map<String, Object> SPORT_K = new HashMap<String, Object>();
+	public static final Map<String, Float> SPORT_K = new HashMap<String, Float>();
 
 	static {
 		BODY_LOCATIONS.add("*");
@@ -72,6 +72,7 @@ public class DefaultValue {
 
 		SPORT_K.put("健走", 0.824F);
 		SPORT_K.put("跑步", 1.036F);
+		SPORT_K.put("骑车", 0.6142F);
 
 		// 初始化食物介绍
 		initFoodsParam();

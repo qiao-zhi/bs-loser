@@ -20,8 +20,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
 import cn.qs.bean.user.DietStepRecord;
-import cn.qs.bean.user.UserLosePlan;
-import cn.qs.service.user.UserLosePlanService;
+import cn.qs.service.user.DietStepRecordService;
 import cn.qs.utils.DefaultValue;
 import cn.qs.utils.JSONResultUtil;
 import cn.qs.utils.LoseConputeUtils;
@@ -35,7 +34,7 @@ public class DietStepRecordController {
 	private String baseFilePath = "dietStep";
 
 	@Autowired
-	private UserLosePlanService losePlanService;
+	private DietStepRecordService dietStepRecordService;
 
 	/**
 	 * 跳转到显示列表
@@ -70,15 +69,15 @@ public class DietStepRecordController {
 	@ResponseBody
 	public JSONResultUtil doAdd(DietStepRecord dietStepRecord, HttpServletRequest request) {
 		dietStepRecord.setCreatorusername(SystemUtils.getLoginUsername(request));
-		LoseConputeUtils.setSportsHeatAndDietsHeats(dietStepRecord);
-		
-		System.out.println(dietStepRecord);
+		LoseConputeUtils.setSportsHeatAndDietsHeats(dietStepRecord, request);
+
+		dietStepRecordService.add(dietStepRecord);
 		return JSONResultUtil.ok();
 	}
 
 	@RequestMapping("pages")
 	@ResponseBody
-	public PageInfo<UserLosePlan> pages(@RequestParam Map condition) {
+	public PageInfo<DietStepRecord> pages(@RequestParam Map condition) {
 		int pageNum = 1;
 		if (ValidateCheck.isNotNull(MapUtils.getString(condition, "pageNum"))) { // 如果不为空的话改变当前页号
 			pageNum = MapUtils.getInteger(condition, "pageNum");
@@ -90,27 +89,27 @@ public class DietStepRecordController {
 
 		// 开始分页
 		PageHelper.startPage(pageNum, pageSize);
-		List<UserLosePlan> useplans = new ArrayList<UserLosePlan>();
+		List<DietStepRecord> useplans = new ArrayList<DietStepRecord>();
 		try {
-			useplans = losePlanService.listByCondition(condition);
+			useplans = dietStepRecordService.listByCondition(condition);
 		} catch (Exception e) {
 			logger.error("getUsers error！", e);
 		}
-		PageInfo<UserLosePlan> pageInfo = new PageInfo<UserLosePlan>(useplans);
+		PageInfo<DietStepRecord> pageInfo = new PageInfo<DietStepRecord>(useplans);
 
 		return pageInfo;
 	}
 
 	@RequestMapping("delete")
 	@ResponseBody
-	public JSONResultUtil delete(String id) {
-		losePlanService.delete(id);
+	public JSONResultUtil delete(Integer id) {
+		dietStepRecordService.delete(id);
 		return JSONResultUtil.ok();
 	}
 
 	@RequestMapping("update")
-	public String update(String id, ModelMap map, HttpServletRequest request) {
-		UserLosePlan plan = losePlanService.findById(id);
+	public String update(Integer id, ModelMap map, HttpServletRequest request) {
+		DietStepRecord plan = dietStepRecordService.findById(id);
 		map.addAttribute("plan", plan);
 		map.put("finishs", DefaultValue.FINISH_DATAILS);
 
@@ -119,8 +118,8 @@ public class DietStepRecordController {
 
 	@RequestMapping("doUpdate")
 	@ResponseBody
-	public JSONResultUtil doUpdate(UserLosePlan plan) {
-		losePlanService.update(plan);
+	public JSONResultUtil doUpdate(DietStepRecord record) {
+		dietStepRecordService.update(record);
 		return JSONResultUtil.ok();
 	}
 }
