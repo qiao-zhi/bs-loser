@@ -21,20 +21,87 @@
         <form class="layui-form">
         
           <div class="layui-form-item">
+              <label for="L_username" class="layui-form-label">
+                  <span class="x-red">*</span>日期
+              </label>
+              <div class="layui-input-inline">
+                  <input type="text" name="remark" class="layui-input" id="plandateText"/>
+              </div>
+          </div>
+        
+          <div class="layui-form-item">
               <label for="L_email" class="layui-form-label">
                   <span class="x-red">*</span>食物
               </label>
               <div class="layui-input-inline">
-                  <input type="text" name="foods" autocomplete="off" class="layui-input"
+             	  <input type="hidden" name="diets" id="diets_id"/>
+                  <input type="text" autocomplete="off" class="layui-input diets_input"
                   	th:each="entry:${foods}" th:placeholder="${entry.key}" onchange="setValAddFood(this)"/>
+              </div>
+          </div>
+          
+          <div class="layui-form-item">
+              <label for="L_email" class="layui-form-label">
+                  <span class="x-red">*</span>摄入热量
+              </label>
+              <div class="layui-input-inline">
+                  <input class="layui-input" type="text" name="dietsheat" placeholder="自动生成" readonly="readonly"/>
+              </div>
+          </div>
+          
+          <div class="layui-form-item">
+              <label for="L_email" class="layui-form-label">
+                  <span class="x-red">*</span>运动情况
+              </label>
+              <div class="layui-input-inline">
+              	  <input type="hidden" name="sports" id="sports_id"/>
+                  <input class="layui-input sports_input" type="text" onchange="setValAddSports(this)"  placeholder="健走路程(单位:km)"/>
+                  <input class="layui-input sports_input" type="text" onchange="setValAddSports(this)"  placeholder="跑步路程(单位:km)"/>
+                  <input class="layui-input sports_input" type="text" onchange="setValAddSports(this)" placeholder="骑车路程(单位:km)"/>
+              </div>
+          </div>
+          
+        <div class="layui-form-item">
+              <label for="L_email" class="layui-form-label">
+                  <span class="x-red">*</span>消耗热量
+              </label>
+              <div class="layui-input-inline">
+                  <input class="layui-input" type="text" placeholder="自动生成" name="sportsheat" readonly="readonly"/>
+              </div>
+          </div>
+          
+          <div class="layui-form-item">
+              <label for="L_email" class="layui-form-label">
+                  <span class="x-red">*</span>步数
+              </label>
+              <div class="layui-input-inline">
+                  <input class="layui-input" name="stepnumber" type="text"/>
+              </div>
+          </div>
+          
+          <div class="layui-form-item">
+              <label for="L_email" class="layui-form-label">
+                  <span class="x-red">*</span>步数排名
+              </label>
+              <div class="layui-input-inline">
+                  <input class="layui-input" type="text" name="stepsequence" placeholder="自动生成" readonly="readonly"/>
+              </div>
+          </div>
+          
+          <div class="layui-form-item">
+              <label for="L_email" class="layui-form-label">
+                  <span class="x-red">*</span>推荐视频
+              </label>
+              <div class="layui-input-inline">
+                  <input class="layui-input" type="text" name="recommendvideo" placeholder="自动生成" readonly="readonly"/>
               </div>
           </div>
         
           <div class="layui-form-item">
               <label for="L_repass" class="layui-form-label">
               </label>
-              <button  class="layui-btn" lay-filter="add" lay-submit="">
-                  增加
+              <button  class="layui-btn" lay-filter="add" lay-submit="" onclick="init()">
+                  	增加
               </button>
           </div>
       </form>
@@ -59,7 +126,7 @@
           //监听提交
           form.on('submit(add)', function(data){
        	    //异步提交数据
-       	    $.post("/userLosePlan/doAdd.html",data.field,function(response){
+       	    $.post("/dietStep/doAdd.html",data.field,function(response){
        	    	if(response.success == true){
        	    	  layer.msg("增加成功", {icon: 6},function () {
                       // 获得frame索引
@@ -80,11 +147,52 @@
           
         });
         
+        function init(){
+       	  //设置饮食和运动的值
+      	  initDiet();
+      	  initSports();
+        }
+        
+        function setValAddSports(obj){
+        	var classVal=$(obj).attr("placeholder");
+        	var value = $(obj).val();
+        	var sportName = classVal.substring(0,2);
+        	$(obj).val(sportName+"-"+value);
+        }
+        
         function setValAddFood(obj){
         	var classVal=$(obj).attr("placeholder");
         	var value = $(obj).val();
         	var foodName = classVal.substring(0,classVal.indexOf("-"));
         	$(obj).val(foodName+"-"+value);
+        }
+        
+        function initDiet(){
+        	var value = "";
+        	$(".diets_input").each(function(){
+        		if($(this).val()){
+	        		value += $(this).val()+",";
+        		}
+        	});
+        	
+        	if(value.length > 0){
+        		value = value.substr(0,value.length-1);
+        		$("#diets_id").val(value);
+        	}
+        }
+        
+        function initSports(){
+        	var value = "";
+        	$(".sports_input").each(function(){
+        		if($(this).val()){
+	        		value += $(this).val()+",";
+        		}
+        	});
+        	
+        	if(value.length > 0){
+        		value = value.substr(0,value.length-1);
+        		$("#sports_id").val(value);
+        	}
         }
     </script>
   </body>

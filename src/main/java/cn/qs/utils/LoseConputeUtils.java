@@ -10,6 +10,8 @@ import org.apache.commons.lang.math.FloatRange;
 import org.apache.commons.lang.math.NumberUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import cn.qs.bean.user.DietStepRecord;
+
 /**
  * 计算BMI基数和根据基数计算体型的工具类
  * 
@@ -74,4 +76,35 @@ public class LoseConputeUtils {
 		System.out.println(computeHealthStrByMBI);
 	}
 
+	/**
+	 * 计算摄入热量和消耗热量
+	 * 
+	 * @param dietStepRecord
+	 */
+	public static void setSportsHeatAndDietsHeats(DietStepRecord dietStepRecord) {
+		DecimalFormat numberFormat = new DecimalFormat("0.00");
+
+		// 1. 计算摄入热量
+		Float totalHeats = 0F;
+		String diets = dietStepRecord.getDiets();
+		if (StringUtils.isNotBlank(diets)) {
+			String[] split = diets.split(",");
+			for (String s : split) {
+				String[] split2 = s.split("-");
+				String foodName = split2[0];
+				Float eated = NumberUtils.toFloat(split2[1]);// 摄入量
+				String string = DefaultValue.FOOD_HEAT.get(foodName);
+				String[] split3 = string.split("/");
+				Float heat1 = NumberUtils.toFloat(split3[0]);
+				Float unit = NumberUtils.toFloat(split3[1]);
+
+				Float total = eated / unit * heat1;
+				totalHeats += total;
+			}
+		}
+		dietStepRecord.setDiets(numberFormat.format(totalHeats) + "卡路里");
+
+		// 2.计算运动消耗热量
+		Float sportsHeats = 0F;
+	}
 }

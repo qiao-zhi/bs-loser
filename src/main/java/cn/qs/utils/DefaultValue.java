@@ -39,14 +39,14 @@ public class DefaultValue {
 	public static final List<String> FINISH_DATAILS = new ArrayList<String>();
 
 	/**
-	 * 食物介绍表
-	 */
-	public static final List<String> FOODS = new ArrayList<String>();
-
-	/**
 	 * 食物热量表
 	 */
 	public static final Map<String, Object> FOODS_HEAT = new HashMap<String, Object>();
+
+	/**
+	 * 食物热量表(提取过的)
+	 */
+	public static final Map<String, String> FOOD_HEAT = new HashMap<String, String>();
 
 	/**
 	 * 运动系数
@@ -84,7 +84,7 @@ public class DefaultValue {
 		FOODS_HEAT.put("面包-313 大卡(每100克)", "313/100");
 
 		for (String food : FOODS_HEAT.keySet()) {
-			FOODS.add(food.substring(0, food.indexOf("-")));
+			FOOD_HEAT.put(food.substring(0, food.indexOf("-")), (String) FOODS_HEAT.get(food));
 		}
 	}
 

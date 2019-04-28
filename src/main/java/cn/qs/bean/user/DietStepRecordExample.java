@@ -164,136 +164,6 @@ public class DietStepRecordExample {
             return (Criteria) this;
         }
 
-        public Criteria andBreakfastIsNull() {
-            addCriterion("breakfast is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andBreakfastIsNotNull() {
-            addCriterion("breakfast is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andBreakfastEqualTo(String value) {
-            addCriterion("breakfast =", value, "breakfast");
-            return (Criteria) this;
-        }
-
-        public Criteria andBreakfastNotEqualTo(String value) {
-            addCriterion("breakfast <>", value, "breakfast");
-            return (Criteria) this;
-        }
-
-        public Criteria andBreakfastGreaterThan(String value) {
-            addCriterion("breakfast >", value, "breakfast");
-            return (Criteria) this;
-        }
-
-        public Criteria andBreakfastGreaterThanOrEqualTo(String value) {
-            addCriterion("breakfast >=", value, "breakfast");
-            return (Criteria) this;
-        }
-
-        public Criteria andBreakfastLessThan(String value) {
-            addCriterion("breakfast <", value, "breakfast");
-            return (Criteria) this;
-        }
-
-        public Criteria andBreakfastLessThanOrEqualTo(String value) {
-            addCriterion("breakfast <=", value, "breakfast");
-            return (Criteria) this;
-        }
-
-        public Criteria andBreakfastLike(String value) {
-            addCriterion("breakfast like", value, "breakfast");
-            return (Criteria) this;
-        }
-
-        public Criteria andBreakfastNotLike(String value) {
-            addCriterion("breakfast not like", value, "breakfast");
-            return (Criteria) this;
-        }
-
-        public Criteria andBreakfastIn(List<String> values) {
-            addCriterion("breakfast in", values, "breakfast");
-            return (Criteria) this;
-        }
-
-        public Criteria andBreakfastNotIn(List<String> values) {
-            addCriterion("breakfast not in", values, "breakfast");
-            return (Criteria) this;
-        }
-
-        public Criteria andBreakfastBetween(String value1, String value2) {
-            addCriterion("breakfast between", value1, value2, "breakfast");
-            return (Criteria) this;
-        }
-
-        public Criteria andBreakfastNotBetween(String value1, String value2) {
-            addCriterion("breakfast not between", value1, value2, "breakfast");
-            return (Criteria) this;
-        }
-
-        public Criteria andBreakfastheatIsNull() {
-            addCriterion("breakfastheat is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andBreakfastheatIsNotNull() {
-            addCriterion("breakfastheat is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andBreakfastheatEqualTo(Float value) {
-            addCriterion("breakfastheat =", value, "breakfastheat");
-            return (Criteria) this;
-        }
-
-        public Criteria andBreakfastheatNotEqualTo(Float value) {
-            addCriterion("breakfastheat <>", value, "breakfastheat");
-            return (Criteria) this;
-        }
-
-        public Criteria andBreakfastheatGreaterThan(Float value) {
-            addCriterion("breakfastheat >", value, "breakfastheat");
-            return (Criteria) this;
-        }
-
-        public Criteria andBreakfastheatGreaterThanOrEqualTo(Float value) {
-            addCriterion("breakfastheat >=", value, "breakfastheat");
-            return (Criteria) this;
-        }
-
-        public Criteria andBreakfastheatLessThan(Float value) {
-            addCriterion("breakfastheat <", value, "breakfastheat");
-            return (Criteria) this;
-        }
-
-        public Criteria andBreakfastheatLessThanOrEqualTo(Float value) {
-            addCriterion("breakfastheat <=", value, "breakfastheat");
-            return (Criteria) this;
-        }
-
-        public Criteria andBreakfastheatIn(List<Float> values) {
-            addCriterion("breakfastheat in", values, "breakfastheat");
-            return (Criteria) this;
-        }
-
-        public Criteria andBreakfastheatNotIn(List<Float> values) {
-            addCriterion("breakfastheat not in", values, "breakfastheat");
-            return (Criteria) this;
-        }
-
-        public Criteria andBreakfastheatBetween(Float value1, Float value2) {
-            addCriterion("breakfastheat between", value1, value2, "breakfastheat");
-            return (Criteria) this;
-        }
-
-        public Criteria andBreakfastheatNotBetween(Float value1, Float value2) {
-            addCriterion("breakfastheat not between", value1, value2, "breakfastheat");
-            return (Criteria) this;
-        }
-
         public Criteria andCreatorusernameIsNull() {
             addCriterion("creatorusername is null");
             return (Criteria) this;
@@ -364,333 +234,213 @@ public class DietStepRecordExample {
             return (Criteria) this;
         }
 
-        public Criteria andDinnerIsNull() {
-            addCriterion("dinner is null");
+        public Criteria andDietsIsNull() {
+            addCriterion("diets is null");
             return (Criteria) this;
         }
 
-        public Criteria andDinnerIsNotNull() {
-            addCriterion("dinner is not null");
+        public Criteria andDietsIsNotNull() {
+            addCriterion("diets is not null");
             return (Criteria) this;
         }
 
-        public Criteria andDinnerEqualTo(String value) {
-            addCriterion("dinner =", value, "dinner");
+        public Criteria andDietsEqualTo(String value) {
+            addCriterion("diets =", value, "diets");
             return (Criteria) this;
         }
 
-        public Criteria andDinnerNotEqualTo(String value) {
-            addCriterion("dinner <>", value, "dinner");
+        public Criteria andDietsNotEqualTo(String value) {
+            addCriterion("diets <>", value, "diets");
             return (Criteria) this;
         }
 
-        public Criteria andDinnerGreaterThan(String value) {
-            addCriterion("dinner >", value, "dinner");
+        public Criteria andDietsGreaterThan(String value) {
+            addCriterion("diets >", value, "diets");
             return (Criteria) this;
         }
 
-        public Criteria andDinnerGreaterThanOrEqualTo(String value) {
-            addCriterion("dinner >=", value, "dinner");
+        public Criteria andDietsGreaterThanOrEqualTo(String value) {
+            addCriterion("diets >=", value, "diets");
             return (Criteria) this;
         }
 
-        public Criteria andDinnerLessThan(String value) {
-            addCriterion("dinner <", value, "dinner");
+        public Criteria andDietsLessThan(String value) {
+            addCriterion("diets <", value, "diets");
             return (Criteria) this;
         }
 
-        public Criteria andDinnerLessThanOrEqualTo(String value) {
-            addCriterion("dinner <=", value, "dinner");
+        public Criteria andDietsLessThanOrEqualTo(String value) {
+            addCriterion("diets <=", value, "diets");
             return (Criteria) this;
         }
 
-        public Criteria andDinnerLike(String value) {
-            addCriterion("dinner like", value, "dinner");
+        public Criteria andDietsLike(String value) {
+            addCriterion("diets like", value, "diets");
             return (Criteria) this;
         }
 
-        public Criteria andDinnerNotLike(String value) {
-            addCriterion("dinner not like", value, "dinner");
+        public Criteria andDietsNotLike(String value) {
+            addCriterion("diets not like", value, "diets");
             return (Criteria) this;
         }
 
-        public Criteria andDinnerIn(List<String> values) {
-            addCriterion("dinner in", values, "dinner");
+        public Criteria andDietsIn(List<String> values) {
+            addCriterion("diets in", values, "diets");
             return (Criteria) this;
         }
 
-        public Criteria andDinnerNotIn(List<String> values) {
-            addCriterion("dinner not in", values, "dinner");
+        public Criteria andDietsNotIn(List<String> values) {
+            addCriterion("diets not in", values, "diets");
             return (Criteria) this;
         }
 
-        public Criteria andDinnerBetween(String value1, String value2) {
-            addCriterion("dinner between", value1, value2, "dinner");
+        public Criteria andDietsBetween(String value1, String value2) {
+            addCriterion("diets between", value1, value2, "diets");
             return (Criteria) this;
         }
 
-        public Criteria andDinnerNotBetween(String value1, String value2) {
-            addCriterion("dinner not between", value1, value2, "dinner");
+        public Criteria andDietsNotBetween(String value1, String value2) {
+            addCriterion("diets not between", value1, value2, "diets");
             return (Criteria) this;
         }
 
-        public Criteria andDinnerheatIsNull() {
-            addCriterion("dinnerheat is null");
+        public Criteria andDietsheatIsNull() {
+            addCriterion("dietsheat is null");
             return (Criteria) this;
         }
 
-        public Criteria andDinnerheatIsNotNull() {
-            addCriterion("dinnerheat is not null");
+        public Criteria andDietsheatIsNotNull() {
+            addCriterion("dietsheat is not null");
             return (Criteria) this;
         }
 
-        public Criteria andDinnerheatEqualTo(Float value) {
-            addCriterion("dinnerheat =", value, "dinnerheat");
+        public Criteria andDietsheatEqualTo(String value) {
+            addCriterion("dietsheat =", value, "dietsheat");
             return (Criteria) this;
         }
 
-        public Criteria andDinnerheatNotEqualTo(Float value) {
-            addCriterion("dinnerheat <>", value, "dinnerheat");
+        public Criteria andDietsheatNotEqualTo(String value) {
+            addCriterion("dietsheat <>", value, "dietsheat");
             return (Criteria) this;
         }
 
-        public Criteria andDinnerheatGreaterThan(Float value) {
-            addCriterion("dinnerheat >", value, "dinnerheat");
+        public Criteria andDietsheatGreaterThan(String value) {
+            addCriterion("dietsheat >", value, "dietsheat");
             return (Criteria) this;
         }
 
-        public Criteria andDinnerheatGreaterThanOrEqualTo(Float value) {
-            addCriterion("dinnerheat >=", value, "dinnerheat");
+        public Criteria andDietsheatGreaterThanOrEqualTo(String value) {
+            addCriterion("dietsheat >=", value, "dietsheat");
             return (Criteria) this;
         }
 
-        public Criteria andDinnerheatLessThan(Float value) {
-            addCriterion("dinnerheat <", value, "dinnerheat");
+        public Criteria andDietsheatLessThan(String value) {
+            addCriterion("dietsheat <", value, "dietsheat");
             return (Criteria) this;
         }
 
-        public Criteria andDinnerheatLessThanOrEqualTo(Float value) {
-            addCriterion("dinnerheat <=", value, "dinnerheat");
+        public Criteria andDietsheatLessThanOrEqualTo(String value) {
+            addCriterion("dietsheat <=", value, "dietsheat");
             return (Criteria) this;
         }
 
-        public Criteria andDinnerheatIn(List<Float> values) {
-            addCriterion("dinnerheat in", values, "dinnerheat");
+        public Criteria andDietsheatLike(String value) {
+            addCriterion("dietsheat like", value, "dietsheat");
             return (Criteria) this;
         }
 
-        public Criteria andDinnerheatNotIn(List<Float> values) {
-            addCriterion("dinnerheat not in", values, "dinnerheat");
+        public Criteria andDietsheatNotLike(String value) {
+            addCriterion("dietsheat not like", value, "dietsheat");
             return (Criteria) this;
         }
 
-        public Criteria andDinnerheatBetween(Float value1, Float value2) {
-            addCriterion("dinnerheat between", value1, value2, "dinnerheat");
+        public Criteria andDietsheatIn(List<String> values) {
+            addCriterion("dietsheat in", values, "dietsheat");
             return (Criteria) this;
         }
 
-        public Criteria andDinnerheatNotBetween(Float value1, Float value2) {
-            addCriterion("dinnerheat not between", value1, value2, "dinnerheat");
+        public Criteria andDietsheatNotIn(List<String> values) {
+            addCriterion("dietsheat not in", values, "dietsheat");
             return (Criteria) this;
         }
 
-        public Criteria andLunchIsNull() {
-            addCriterion("lunch is null");
+        public Criteria andDietsheatBetween(String value1, String value2) {
+            addCriterion("dietsheat between", value1, value2, "dietsheat");
             return (Criteria) this;
         }
 
-        public Criteria andLunchIsNotNull() {
-            addCriterion("lunch is not null");
+        public Criteria andDietsheatNotBetween(String value1, String value2) {
+            addCriterion("dietsheat not between", value1, value2, "dietsheat");
             return (Criteria) this;
         }
 
-        public Criteria andLunchEqualTo(String value) {
-            addCriterion("lunch =", value, "lunch");
+        public Criteria andRecommendvideoIsNull() {
+            addCriterion("recommendvideo is null");
             return (Criteria) this;
         }
 
-        public Criteria andLunchNotEqualTo(String value) {
-            addCriterion("lunch <>", value, "lunch");
+        public Criteria andRecommendvideoIsNotNull() {
+            addCriterion("recommendvideo is not null");
             return (Criteria) this;
         }
 
-        public Criteria andLunchGreaterThan(String value) {
-            addCriterion("lunch >", value, "lunch");
+        public Criteria andRecommendvideoEqualTo(String value) {
+            addCriterion("recommendvideo =", value, "recommendvideo");
             return (Criteria) this;
         }
 
-        public Criteria andLunchGreaterThanOrEqualTo(String value) {
-            addCriterion("lunch >=", value, "lunch");
+        public Criteria andRecommendvideoNotEqualTo(String value) {
+            addCriterion("recommendvideo <>", value, "recommendvideo");
             return (Criteria) this;
         }
 
-        public Criteria andLunchLessThan(String value) {
-            addCriterion("lunch <", value, "lunch");
+        public Criteria andRecommendvideoGreaterThan(String value) {
+            addCriterion("recommendvideo >", value, "recommendvideo");
             return (Criteria) this;
         }
 
-        public Criteria andLunchLessThanOrEqualTo(String value) {
-            addCriterion("lunch <=", value, "lunch");
+        public Criteria andRecommendvideoGreaterThanOrEqualTo(String value) {
+            addCriterion("recommendvideo >=", value, "recommendvideo");
             return (Criteria) this;
         }
 
-        public Criteria andLunchLike(String value) {
-            addCriterion("lunch like", value, "lunch");
+        public Criteria andRecommendvideoLessThan(String value) {
+            addCriterion("recommendvideo <", value, "recommendvideo");
             return (Criteria) this;
         }
 
-        public Criteria andLunchNotLike(String value) {
-            addCriterion("lunch not like", value, "lunch");
+        public Criteria andRecommendvideoLessThanOrEqualTo(String value) {
+            addCriterion("recommendvideo <=", value, "recommendvideo");
             return (Criteria) this;
         }
 
-        public Criteria andLunchIn(List<String> values) {
-            addCriterion("lunch in", values, "lunch");
+        public Criteria andRecommendvideoLike(String value) {
+            addCriterion("recommendvideo like", value, "recommendvideo");
             return (Criteria) this;
         }
 
-        public Criteria andLunchNotIn(List<String> values) {
-            addCriterion("lunch not in", values, "lunch");
+        public Criteria andRecommendvideoNotLike(String value) {
+            addCriterion("recommendvideo not like", value, "recommendvideo");
             return (Criteria) this;
         }
 
-        public Criteria andLunchBetween(String value1, String value2) {
-            addCriterion("lunch between", value1, value2, "lunch");
+        public Criteria andRecommendvideoIn(List<String> values) {
+            addCriterion("recommendvideo in", values, "recommendvideo");
             return (Criteria) this;
         }
 
-        public Criteria andLunchNotBetween(String value1, String value2) {
-            addCriterion("lunch not between", value1, value2, "lunch");
+        public Criteria andRecommendvideoNotIn(List<String> values) {
+            addCriterion("recommendvideo not in", values, "recommendvideo");
             return (Criteria) this;
         }
 
-        public Criteria andLunchheatIsNull() {
-            addCriterion("lunchheat is null");
+        public Criteria andRecommendvideoBetween(String value1, String value2) {
+            addCriterion("recommendvideo between", value1, value2, "recommendvideo");
             return (Criteria) this;
         }
 
-        public Criteria andLunchheatIsNotNull() {
-            addCriterion("lunchheat is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andLunchheatEqualTo(Float value) {
-            addCriterion("lunchheat =", value, "lunchheat");
-            return (Criteria) this;
-        }
-
-        public Criteria andLunchheatNotEqualTo(Float value) {
-            addCriterion("lunchheat <>", value, "lunchheat");
-            return (Criteria) this;
-        }
-
-        public Criteria andLunchheatGreaterThan(Float value) {
-            addCriterion("lunchheat >", value, "lunchheat");
-            return (Criteria) this;
-        }
-
-        public Criteria andLunchheatGreaterThanOrEqualTo(Float value) {
-            addCriterion("lunchheat >=", value, "lunchheat");
-            return (Criteria) this;
-        }
-
-        public Criteria andLunchheatLessThan(Float value) {
-            addCriterion("lunchheat <", value, "lunchheat");
-            return (Criteria) this;
-        }
-
-        public Criteria andLunchheatLessThanOrEqualTo(Float value) {
-            addCriterion("lunchheat <=", value, "lunchheat");
-            return (Criteria) this;
-        }
-
-        public Criteria andLunchheatIn(List<Float> values) {
-            addCriterion("lunchheat in", values, "lunchheat");
-            return (Criteria) this;
-        }
-
-        public Criteria andLunchheatNotIn(List<Float> values) {
-            addCriterion("lunchheat not in", values, "lunchheat");
-            return (Criteria) this;
-        }
-
-        public Criteria andLunchheatBetween(Float value1, Float value2) {
-            addCriterion("lunchheat between", value1, value2, "lunchheat");
-            return (Criteria) this;
-        }
-
-        public Criteria andLunchheatNotBetween(Float value1, Float value2) {
-            addCriterion("lunchheat not between", value1, value2, "lunchheat");
-            return (Criteria) this;
-        }
-
-        public Criteria andRecommendviderIsNull() {
-            addCriterion("recommendvider is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andRecommendviderIsNotNull() {
-            addCriterion("recommendvider is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andRecommendviderEqualTo(String value) {
-            addCriterion("recommendvider =", value, "recommendvider");
-            return (Criteria) this;
-        }
-
-        public Criteria andRecommendviderNotEqualTo(String value) {
-            addCriterion("recommendvider <>", value, "recommendvider");
-            return (Criteria) this;
-        }
-
-        public Criteria andRecommendviderGreaterThan(String value) {
-            addCriterion("recommendvider >", value, "recommendvider");
-            return (Criteria) this;
-        }
-
-        public Criteria andRecommendviderGreaterThanOrEqualTo(String value) {
-            addCriterion("recommendvider >=", value, "recommendvider");
-            return (Criteria) this;
-        }
-
-        public Criteria andRecommendviderLessThan(String value) {
-            addCriterion("recommendvider <", value, "recommendvider");
-            return (Criteria) this;
-        }
-
-        public Criteria andRecommendviderLessThanOrEqualTo(String value) {
-            addCriterion("recommendvider <=", value, "recommendvider");
-            return (Criteria) this;
-        }
-
-        public Criteria andRecommendviderLike(String value) {
-            addCriterion("recommendvider like", value, "recommendvider");
-            return (Criteria) this;
-        }
-
-        public Criteria andRecommendviderNotLike(String value) {
-            addCriterion("recommendvider not like", value, "recommendvider");
-            return (Criteria) this;
-        }
-
-        public Criteria andRecommendviderIn(List<String> values) {
-            addCriterion("recommendvider in", values, "recommendvider");
-            return (Criteria) this;
-        }
-
-        public Criteria andRecommendviderNotIn(List<String> values) {
-            addCriterion("recommendvider not in", values, "recommendvider");
-            return (Criteria) this;
-        }
-
-        public Criteria andRecommendviderBetween(String value1, String value2) {
-            addCriterion("recommendvider between", value1, value2, "recommendvider");
-            return (Criteria) this;
-        }
-
-        public Criteria andRecommendviderNotBetween(String value1, String value2) {
-            addCriterion("recommendvider not between", value1, value2, "recommendvider");
+        public Criteria andRecommendvideoNotBetween(String value1, String value2) {
+            addCriterion("recommendvideo not between", value1, value2, "recommendvideo");
             return (Criteria) this;
         }
 
@@ -764,63 +514,143 @@ public class DietStepRecordExample {
             return (Criteria) this;
         }
 
-        public Criteria andSportnumberIsNull() {
-            addCriterion("sportnumber is null");
+        public Criteria andSportsIsNull() {
+            addCriterion("sports is null");
             return (Criteria) this;
         }
 
-        public Criteria andSportnumberIsNotNull() {
-            addCriterion("sportnumber is not null");
+        public Criteria andSportsIsNotNull() {
+            addCriterion("sports is not null");
             return (Criteria) this;
         }
 
-        public Criteria andSportnumberEqualTo(Float value) {
-            addCriterion("sportnumber =", value, "sportnumber");
+        public Criteria andSportsEqualTo(String value) {
+            addCriterion("sports =", value, "sports");
             return (Criteria) this;
         }
 
-        public Criteria andSportnumberNotEqualTo(Float value) {
-            addCriterion("sportnumber <>", value, "sportnumber");
+        public Criteria andSportsNotEqualTo(String value) {
+            addCriterion("sports <>", value, "sports");
             return (Criteria) this;
         }
 
-        public Criteria andSportnumberGreaterThan(Float value) {
-            addCriterion("sportnumber >", value, "sportnumber");
+        public Criteria andSportsGreaterThan(String value) {
+            addCriterion("sports >", value, "sports");
             return (Criteria) this;
         }
 
-        public Criteria andSportnumberGreaterThanOrEqualTo(Float value) {
-            addCriterion("sportnumber >=", value, "sportnumber");
+        public Criteria andSportsGreaterThanOrEqualTo(String value) {
+            addCriterion("sports >=", value, "sports");
             return (Criteria) this;
         }
 
-        public Criteria andSportnumberLessThan(Float value) {
-            addCriterion("sportnumber <", value, "sportnumber");
+        public Criteria andSportsLessThan(String value) {
+            addCriterion("sports <", value, "sports");
             return (Criteria) this;
         }
 
-        public Criteria andSportnumberLessThanOrEqualTo(Float value) {
-            addCriterion("sportnumber <=", value, "sportnumber");
+        public Criteria andSportsLessThanOrEqualTo(String value) {
+            addCriterion("sports <=", value, "sports");
             return (Criteria) this;
         }
 
-        public Criteria andSportnumberIn(List<Float> values) {
-            addCriterion("sportnumber in", values, "sportnumber");
+        public Criteria andSportsLike(String value) {
+            addCriterion("sports like", value, "sports");
             return (Criteria) this;
         }
 
-        public Criteria andSportnumberNotIn(List<Float> values) {
-            addCriterion("sportnumber not in", values, "sportnumber");
+        public Criteria andSportsNotLike(String value) {
+            addCriterion("sports not like", value, "sports");
             return (Criteria) this;
         }
 
-        public Criteria andSportnumberBetween(Float value1, Float value2) {
-            addCriterion("sportnumber between", value1, value2, "sportnumber");
+        public Criteria andSportsIn(List<String> values) {
+            addCriterion("sports in", values, "sports");
             return (Criteria) this;
         }
 
-        public Criteria andSportnumberNotBetween(Float value1, Float value2) {
-            addCriterion("sportnumber not between", value1, value2, "sportnumber");
+        public Criteria andSportsNotIn(List<String> values) {
+            addCriterion("sports not in", values, "sports");
+            return (Criteria) this;
+        }
+
+        public Criteria andSportsBetween(String value1, String value2) {
+            addCriterion("sports between", value1, value2, "sports");
+            return (Criteria) this;
+        }
+
+        public Criteria andSportsNotBetween(String value1, String value2) {
+            addCriterion("sports not between", value1, value2, "sports");
+            return (Criteria) this;
+        }
+
+        public Criteria andSportsheatIsNull() {
+            addCriterion("sportsheat is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSportsheatIsNotNull() {
+            addCriterion("sportsheat is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSportsheatEqualTo(String value) {
+            addCriterion("sportsheat =", value, "sportsheat");
+            return (Criteria) this;
+        }
+
+        public Criteria andSportsheatNotEqualTo(String value) {
+            addCriterion("sportsheat <>", value, "sportsheat");
+            return (Criteria) this;
+        }
+
+        public Criteria andSportsheatGreaterThan(String value) {
+            addCriterion("sportsheat >", value, "sportsheat");
+            return (Criteria) this;
+        }
+
+        public Criteria andSportsheatGreaterThanOrEqualTo(String value) {
+            addCriterion("sportsheat >=", value, "sportsheat");
+            return (Criteria) this;
+        }
+
+        public Criteria andSportsheatLessThan(String value) {
+            addCriterion("sportsheat <", value, "sportsheat");
+            return (Criteria) this;
+        }
+
+        public Criteria andSportsheatLessThanOrEqualTo(String value) {
+            addCriterion("sportsheat <=", value, "sportsheat");
+            return (Criteria) this;
+        }
+
+        public Criteria andSportsheatLike(String value) {
+            addCriterion("sportsheat like", value, "sportsheat");
+            return (Criteria) this;
+        }
+
+        public Criteria andSportsheatNotLike(String value) {
+            addCriterion("sportsheat not like", value, "sportsheat");
+            return (Criteria) this;
+        }
+
+        public Criteria andSportsheatIn(List<String> values) {
+            addCriterion("sportsheat in", values, "sportsheat");
+            return (Criteria) this;
+        }
+
+        public Criteria andSportsheatNotIn(List<String> values) {
+            addCriterion("sportsheat not in", values, "sportsheat");
+            return (Criteria) this;
+        }
+
+        public Criteria andSportsheatBetween(String value1, String value2) {
+            addCriterion("sportsheat between", value1, value2, "sportsheat");
+            return (Criteria) this;
+        }
+
+        public Criteria andSportsheatNotBetween(String value1, String value2) {
+            addCriterion("sportsheat not between", value1, value2, "sportsheat");
             return (Criteria) this;
         }
 

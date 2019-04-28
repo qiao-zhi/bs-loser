@@ -18,20 +18,17 @@ public class DietStepRecord {
 	private Integer id;
 	private String creatorusername;
 
-	private String breakfast;// 早餐
-	private Float breakfastheat;// 早餐热量
-	private String lunch;// 午餐
-	private Float lunchheat;// 午餐热量
-	private String dinner;// 晚餐
-	private Float dinnerheat;// 晚餐热量
+	private String diets;// 饮食
+	private String dietsheat;// 摄入热量
 
-	private Float sportnumber;// 运动时长
+	private String sports;// 运动信息
+	private String sportsheat;// 消耗热量
+
 	private Integer stepnumber;// 步数
 	private Integer stepsequence;// 同一天步数排名(定时任务去修改)
 
-	private String recommendvider;// 推荐视频
-
-	private String remark;
+	private String recommendvideo;// 推荐视频
+	private String remark;//用作日期字段
 
 	public Integer getId() {
 		return id;
@@ -49,28 +46,36 @@ public class DietStepRecord {
 		this.creatorusername = creatorusername;
 	}
 
-	public String getBreakfast() {
-		return breakfast;
+	public String getDiets() {
+		return diets;
 	}
 
-	public void setBreakfast(String breakfast) {
-		this.breakfast = breakfast;
+	public void setDiets(String diets) {
+		this.diets = diets;
 	}
 
-	public String getLunch() {
-		return lunch;
+	public String getDietsheat() {
+		return dietsheat;
 	}
 
-	public void setLunch(String lunch) {
-		this.lunch = lunch;
+	public void setDietsheat(String dietsheat) {
+		this.dietsheat = dietsheat;
 	}
 
-	public String getDinner() {
-		return dinner;
+	public String getSports() {
+		return sports;
 	}
 
-	public void setDinner(String dinner) {
-		this.dinner = dinner;
+	public void setSports(String sports) {
+		this.sports = sports;
+	}
+
+	public String getSportsheat() {
+		return sportsheat;
+	}
+
+	public void setSportsheat(String sportsheat) {
+		this.sportsheat = sportsheat;
 	}
 
 	public Integer getStepnumber() {
@@ -89,6 +94,14 @@ public class DietStepRecord {
 		this.stepsequence = stepsequence;
 	}
 
+	public String getRecommendvideo() {
+		return recommendvideo;
+	}
+
+	public void setRecommendvideo(String recommendvideo) {
+		this.recommendvideo = recommendvideo;
+	}
+
 	public String getRemark() {
 		return remark;
 	}
@@ -97,43 +110,11 @@ public class DietStepRecord {
 		this.remark = remark;
 	}
 
-	public Float getSportnumber() {
-		return sportnumber;
+	@Override
+	public String toString() {
+		return "DietStepRecord [id=" + id + ", creatorusername=" + creatorusername + ", diets=" + diets + ", dietsheat="
+				+ dietsheat + ", sports=" + sports + ", sportsheat=" + sportsheat + ", stepnumber=" + stepnumber
+				+ ", stepsequence=" + stepsequence + ", recommendvideo=" + recommendvideo + ", remark=" + remark + "]";
 	}
 
-	public void setSportnumber(Float sportnumber) {
-		this.sportnumber = sportnumber;
-	}
-
-	public Float getBreakfastheat() {
-		return breakfastheat;
-	}
-
-	public void setBreakfastheat(Float breakfastheat) {
-		this.breakfastheat = breakfastheat;
-	}
-
-	public Float getLunchheat() {
-		return lunchheat;
-	}
-
-	public void setLunchheat(Float lunchheat) {
-		this.lunchheat = lunchheat;
-	}
-
-	public Float getDinnerheat() {
-		return dinnerheat;
-	}
-
-	public void setDinnerheat(Float dinnerheat) {
-		this.dinnerheat = dinnerheat;
-	}
-
-	public String getRecommendvider() {
-		return recommendvider;
-	}
-
-	public void setRecommendvider(String recommendvider) {
-		this.recommendvider = recommendvider;
-	}
 }

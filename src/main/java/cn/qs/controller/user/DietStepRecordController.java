@@ -1,7 +1,6 @@
 package cn.qs.controller.user;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -20,12 +19,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
+import cn.qs.bean.user.DietStepRecord;
 import cn.qs.bean.user.UserLosePlan;
 import cn.qs.service.user.UserLosePlanService;
 import cn.qs.utils.DefaultValue;
 import cn.qs.utils.JSONResultUtil;
+import cn.qs.utils.LoseConputeUtils;
 import cn.qs.utils.SystemUtils;
-import cn.qs.utils.UUIDUtil;
 import cn.qs.utils.ValidateCheck;
 
 @Controller
@@ -68,12 +68,11 @@ public class DietStepRecordController {
 	 */
 	@RequestMapping("doAdd")
 	@ResponseBody
-	public JSONResultUtil doAdd(UserLosePlan plan, HttpServletRequest request) {
-		plan.setId(UUIDUtil.getUUID2());
-		plan.setCreatetime(new Date());
-		plan.setCreatorusername(SystemUtils.getLoginUsername(request));
-
-		losePlanService.add(plan);
+	public JSONResultUtil doAdd(DietStepRecord dietStepRecord, HttpServletRequest request) {
+		dietStepRecord.setCreatorusername(SystemUtils.getLoginUsername(request));
+		LoseConputeUtils.setSportsHeatAndDietsHeats(dietStepRecord);
+		
+		System.out.println(dietStepRecord);
 		return JSONResultUtil.ok();
 	}
 

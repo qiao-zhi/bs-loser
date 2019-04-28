@@ -3,16 +3,13 @@
 <mapper namespace="cn.qs.mapper.user.DietStepRecordMapper" >
   <resultMap id="BaseResultMap" type="cn.qs.bean.user.DietStepRecord" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="breakfast" property="breakfast" jdbcType="VARCHAR" />
-    <result column="breakfastheat" property="breakfastheat" jdbcType="REAL" />
     <result column="creatorusername" property="creatorusername" jdbcType="VARCHAR" />
-    <result column="dinner" property="dinner" jdbcType="VARCHAR" />
-    <result column="dinnerheat" property="dinnerheat" jdbcType="REAL" />
-    <result column="lunch" property="lunch" jdbcType="VARCHAR" />
-    <result column="lunchheat" property="lunchheat" jdbcType="REAL" />
-    <result column="recommendvider" property="recommendvider" jdbcType="VARCHAR" />
+    <result column="diets" property="diets" jdbcType="VARCHAR" />
+    <result column="dietsheat" property="dietsheat" jdbcType="VARCHAR" />
+    <result column="recommendvideo" property="recommendvideo" jdbcType="VARCHAR" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
-    <result column="sportnumber" property="sportnumber" jdbcType="REAL" />
+    <result column="sports" property="sports" jdbcType="VARCHAR" />
+    <result column="sportsheat" property="sportsheat" jdbcType="VARCHAR" />
     <result column="stepnumber" property="stepnumber" jdbcType="INTEGER" />
     <result column="stepsequence" property="stepsequence" jdbcType="INTEGER" />
   </resultMap>
@@ -75,8 +72,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, breakfast, breakfastheat, creatorusername, dinner, dinnerheat, lunch, lunchheat, 
-    recommendvider, remark, sportnumber, stepnumber, stepsequence
+    id, creatorusername, diets, dietsheat, recommendvideo, remark, sports, sportsheat, 
+    stepnumber, stepsequence
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.qs.bean.user.DietStepRecordExample" >
     select
@@ -109,15 +106,13 @@
     </if>
   </delete>
   <insert id="insert" parameterType="cn.qs.bean.user.DietStepRecord" >
-    insert into diet_step_record (id, breakfast, breakfastheat, 
-      creatorusername, dinner, dinnerheat, 
-      lunch, lunchheat, recommendvider, 
-      remark, sportnumber, stepnumber, 
+    insert into diet_step_record (id, creatorusername, diets, 
+      dietsheat, recommendvideo, remark, 
+      sports, sportsheat, stepnumber, 
       stepsequence)
-    values (#{id,jdbcType=INTEGER}, #{breakfast,jdbcType=VARCHAR}, #{breakfastheat,jdbcType=REAL}, 
-      #{creatorusername,jdbcType=VARCHAR}, #{dinner,jdbcType=VARCHAR}, #{dinnerheat,jdbcType=REAL}, 
-      #{lunch,jdbcType=VARCHAR}, #{lunchheat,jdbcType=REAL}, #{recommendvider,jdbcType=VARCHAR}, 
-      #{remark,jdbcType=VARCHAR}, #{sportnumber,jdbcType=REAL}, #{stepnumber,jdbcType=INTEGER}, 
+    values (#{id,jdbcType=INTEGER}, #{creatorusername,jdbcType=VARCHAR}, #{diets,jdbcType=VARCHAR}, 
+      #{dietsheat,jdbcType=VARCHAR}, #{recommendvideo,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{sports,jdbcType=VARCHAR}, #{sportsheat,jdbcType=VARCHAR}, #{stepnumber,jdbcType=INTEGER}, 
       #{stepsequence,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="cn.qs.bean.user.DietStepRecord" >
@@ -126,35 +121,26 @@
       <if test="id != null" >
         id,
       </if>
-      <if test="breakfast != null" >
-        breakfast,
-      </if>
-      <if test="breakfastheat != null" >
-        breakfastheat,
-      </if>
       <if test="creatorusername != null" >
         creatorusername,
       </if>
-      <if test="dinner != null" >
-        dinner,
+      <if test="diets != null" >
+        diets,
       </if>
-      <if test="dinnerheat != null" >
-        dinnerheat,
+      <if test="dietsheat != null" >
+        dietsheat,
       </if>
-      <if test="lunch != null" >
-        lunch,
-      </if>
-      <if test="lunchheat != null" >
-        lunchheat,
-      </if>
-      <if test="recommendvider != null" >
-        recommendvider,
+      <if test="recommendvideo != null" >
+        recommendvideo,
       </if>
       <if test="remark != null" >
         remark,
       </if>
-      <if test="sportnumber != null" >
-        sportnumber,
+      <if test="sports != null" >
+        sports,
+      </if>
+      <if test="sportsheat != null" >
+        sportsheat,
       </if>
       <if test="stepnumber != null" >
         stepnumber,
@@ -167,35 +153,26 @@
       <if test="id != null" >
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="breakfast != null" >
-        #{breakfast,jdbcType=VARCHAR},
-      </if>
-      <if test="breakfastheat != null" >
-        #{breakfastheat,jdbcType=REAL},
-      </if>
       <if test="creatorusername != null" >
         #{creatorusername,jdbcType=VARCHAR},
       </if>
-      <if test="dinner != null" >
-        #{dinner,jdbcType=VARCHAR},
+      <if test="diets != null" >
+        #{diets,jdbcType=VARCHAR},
       </if>
-      <if test="dinnerheat != null" >
-        #{dinnerheat,jdbcType=REAL},
+      <if test="dietsheat != null" >
+        #{dietsheat,jdbcType=VARCHAR},
       </if>
-      <if test="lunch != null" >
-        #{lunch,jdbcType=VARCHAR},
-      </if>
-      <if test="lunchheat != null" >
-        #{lunchheat,jdbcType=REAL},
-      </if>
-      <if test="recommendvider != null" >
-        #{recommendvider,jdbcType=VARCHAR},
+      <if test="recommendvideo != null" >
+        #{recommendvideo,jdbcType=VARCHAR},
       </if>
       <if test="remark != null" >
         #{remark,jdbcType=VARCHAR},
       </if>
-      <if test="sportnumber != null" >
-        #{sportnumber,jdbcType=REAL},
+      <if test="sports != null" >
+        #{sports,jdbcType=VARCHAR},
+      </if>
+      <if test="sportsheat != null" >
+        #{sportsheat,jdbcType=VARCHAR},
       </if>
       <if test="stepnumber != null" >
         #{stepnumber,jdbcType=INTEGER},
@@ -217,35 +194,26 @@
       <if test="record.id != null" >
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.breakfast != null" >
-        breakfast = #{record.breakfast,jdbcType=VARCHAR},
-      </if>
-      <if test="record.breakfastheat != null" >
-        breakfastheat = #{record.breakfastheat,jdbcType=REAL},
-      </if>
       <if test="record.creatorusername != null" >
         creatorusername = #{record.creatorusername,jdbcType=VARCHAR},
       </if>
-      <if test="record.dinner != null" >
-        dinner = #{record.dinner,jdbcType=VARCHAR},
+      <if test="record.diets != null" >
+        diets = #{record.diets,jdbcType=VARCHAR},
       </if>
-      <if test="record.dinnerheat != null" >
-        dinnerheat = #{record.dinnerheat,jdbcType=REAL},
+      <if test="record.dietsheat != null" >
+        dietsheat = #{record.dietsheat,jdbcType=VARCHAR},
       </if>
-      <if test="record.lunch != null" >
-        lunch = #{record.lunch,jdbcType=VARCHAR},
-      </if>
-      <if test="record.lunchheat != null" >
-        lunchheat = #{record.lunchheat,jdbcType=REAL},
-      </if>
-      <if test="record.recommendvider != null" >
-        recommendvider = #{record.recommendvider,jdbcType=VARCHAR},
+      <if test="record.recommendvideo != null" >
+        recommendvideo = #{record.recommendvideo,jdbcType=VARCHAR},
       </if>
       <if test="record.remark != null" >
         remark = #{record.remark,jdbcType=VARCHAR},
       </if>
-      <if test="record.sportnumber != null" >
-        sportnumber = #{record.sportnumber,jdbcType=REAL},
+      <if test="record.sports != null" >
+        sports = #{record.sports,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sportsheat != null" >
+        sportsheat = #{record.sportsheat,jdbcType=VARCHAR},
       </if>
       <if test="record.stepnumber != null" >
         stepnumber = #{record.stepnumber,jdbcType=INTEGER},
@@ -261,16 +229,13 @@
   <update id="updateByExample" parameterType="map" >
     update diet_step_record
     set id = #{record.id,jdbcType=INTEGER},
-      breakfast = #{record.breakfast,jdbcType=VARCHAR},
-      breakfastheat = #{record.breakfastheat,jdbcType=REAL},
       creatorusername = #{record.creatorusername,jdbcType=VARCHAR},
-      dinner = #{record.dinner,jdbcType=VARCHAR},
-      dinnerheat = #{record.dinnerheat,jdbcType=REAL},
-      lunch = #{record.lunch,jdbcType=VARCHAR},
-      lunchheat = #{record.lunchheat,jdbcType=REAL},
-      recommendvider = #{record.recommendvider,jdbcType=VARCHAR},
+      diets = #{record.diets,jdbcType=VARCHAR},
+      dietsheat = #{record.dietsheat,jdbcType=VARCHAR},
+      recommendvideo = #{record.recommendvideo,jdbcType=VARCHAR},
       remark = #{record.remark,jdbcType=VARCHAR},
-      sportnumber = #{record.sportnumber,jdbcType=REAL},
+      sports = #{record.sports,jdbcType=VARCHAR},
+      sportsheat = #{record.sportsheat,jdbcType=VARCHAR},
       stepnumber = #{record.stepnumber,jdbcType=INTEGER},
       stepsequence = #{record.stepsequence,jdbcType=INTEGER}
     <if test="_parameter != null" >
@@ -280,35 +245,26 @@
   <update id="updateByPrimaryKeySelective" parameterType="cn.qs.bean.user.DietStepRecord" >
     update diet_step_record
     <set >
-      <if test="breakfast != null" >
-        breakfast = #{breakfast,jdbcType=VARCHAR},
-      </if>
-      <if test="breakfastheat != null" >
-        breakfastheat = #{breakfastheat,jdbcType=REAL},
-      </if>
       <if test="creatorusername != null" >
         creatorusername = #{creatorusername,jdbcType=VARCHAR},
       </if>
-      <if test="dinner != null" >
-        dinner = #{dinner,jdbcType=VARCHAR},
+      <if test="diets != null" >
+        diets = #{diets,jdbcType=VARCHAR},
       </if>
-      <if test="dinnerheat != null" >
-        dinnerheat = #{dinnerheat,jdbcType=REAL},
+      <if test="dietsheat != null" >
+        dietsheat = #{dietsheat,jdbcType=VARCHAR},
       </if>
-      <if test="lunch != null" >
-        lunch = #{lunch,jdbcType=VARCHAR},
-      </if>
-      <if test="lunchheat != null" >
-        lunchheat = #{lunchheat,jdbcType=REAL},
-      </if>
-      <if test="recommendvider != null" >
-        recommendvider = #{recommendvider,jdbcType=VARCHAR},
+      <if test="recommendvideo != null" >
+        recommendvideo = #{recommendvideo,jdbcType=VARCHAR},
       </if>
       <if test="remark != null" >
         remark = #{remark,jdbcType=VARCHAR},
       </if>
-      <if test="sportnumber != null" >
-        sportnumber = #{sportnumber,jdbcType=REAL},
+      <if test="sports != null" >
+        sports = #{sports,jdbcType=VARCHAR},
+      </if>
+      <if test="sportsheat != null" >
+        sportsheat = #{sportsheat,jdbcType=VARCHAR},
       </if>
       <if test="stepnumber != null" >
         stepnumber = #{stepnumber,jdbcType=INTEGER},
@@ -321,16 +277,13 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="cn.qs.bean.user.DietStepRecord" >
     update diet_step_record
-    set breakfast = #{breakfast,jdbcType=VARCHAR},
-      breakfastheat = #{breakfastheat,jdbcType=REAL},
-      creatorusername = #{creatorusername,jdbcType=VARCHAR},
-      dinner = #{dinner,jdbcType=VARCHAR},
-      dinnerheat = #{dinnerheat,jdbcType=REAL},
-      lunch = #{lunch,jdbcType=VARCHAR},
-      lunchheat = #{lunchheat,jdbcType=REAL},
-      recommendvider = #{recommendvider,jdbcType=VARCHAR},
+    set creatorusername = #{creatorusername,jdbcType=VARCHAR},
+      diets = #{diets,jdbcType=VARCHAR},
+      dietsheat = #{dietsheat,jdbcType=VARCHAR},
+      recommendvideo = #{recommendvideo,jdbcType=VARCHAR},
       remark = #{remark,jdbcType=VARCHAR},
-      sportnumber = #{sportnumber,jdbcType=REAL},
+      sports = #{sports,jdbcType=VARCHAR},
+      sportsheat = #{sportsheat,jdbcType=VARCHAR},
       stepnumber = #{stepnumber,jdbcType=INTEGER},
       stepsequence = #{stepsequence,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}

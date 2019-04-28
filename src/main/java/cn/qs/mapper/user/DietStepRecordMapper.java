@@ -1,13 +1,10 @@
 package cn.qs.mapper.user;
 
-import java.util.List;
-
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-
 import cn.qs.bean.user.DietStepRecord;
 import cn.qs.bean.user.DietStepRecordExample;
-@Mapper
+import java.util.List;
+import org.apache.ibatis.annotations.Param;
+
 public interface DietStepRecordMapper {
     int countByExample(DietStepRecordExample example);
 
