@@ -43,6 +43,7 @@ public class UserServiceImpl implements UserService {
 			createCriteria.andUsernameLike("%" + MapUtils.getString(condition, "username") + "%");
 		}
 		List<User> list = userMapper.selectByExample(userExample);
+		
 		return list;
 	}
 

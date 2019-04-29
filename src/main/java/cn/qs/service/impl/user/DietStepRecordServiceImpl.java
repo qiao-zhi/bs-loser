@@ -12,12 +12,16 @@ import cn.qs.bean.user.DietStepRecord;
 import cn.qs.bean.user.DietStepRecordExample;
 import cn.qs.bean.user.DietStepRecordExample.Criteria;
 import cn.qs.mapper.user.DietStepRecordMapper;
+import cn.qs.mapper.user.custom.DietStepRecordCustomMapper;
 import cn.qs.service.user.DietStepRecordService;
 
 @Service
 public class DietStepRecordServiceImpl implements DietStepRecordService {
 	@Autowired
 	private DietStepRecordMapper dietStepRecordMapper;
+
+	@Autowired
+	private DietStepRecordCustomMapper dietStepRecordCustomMapper;
 
 	@Override
 	public void add(DietStepRecord t) {
@@ -51,4 +55,8 @@ public class DietStepRecordServiceImpl implements DietStepRecordService {
 		dietStepRecordMapper.updateByPrimaryKeySelective(t);
 	}
 
+	@Override
+	public List<Map<String, Object>> getStepSequence(String day) {
+		return dietStepRecordCustomMapper.getStepSequence(day);
+	}
 }

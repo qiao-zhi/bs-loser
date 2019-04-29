@@ -84,7 +84,7 @@ public class UserLosePlanController {
 
 	@RequestMapping("pages")
 	@ResponseBody
-	public PageInfo<UserLosePlan> pages(@RequestParam Map condition) {
+	public PageInfo<UserLosePlan> pages(@RequestParam Map condition,HttpServletRequest request) {
 		int pageNum = 1;
 		if (ValidateCheck.isNotNull(MapUtils.getString(condition, "pageNum"))) { // 如果不为空的话改变当前页号
 			pageNum = MapUtils.getInteger(condition, "pageNum");
@@ -93,7 +93,10 @@ public class UserLosePlanController {
 		if (ValidateCheck.isNotNull(MapUtils.getString(condition, "pageSize"))) { // 如果不为空的话改变当前页大小
 			pageSize = MapUtils.getInteger(condition, "pageSize");
 		}
-
+		if(!"admin".equals(SystemUtils.getLoginUsername(request))){
+			condition.put("username", SystemUtils.getLoginUsername(request));
+		}
+		
 		// 开始分页
 		PageHelper.startPage(pageNum, pageSize);
 		List<UserLosePlan> useplans = new ArrayList<UserLosePlan>();

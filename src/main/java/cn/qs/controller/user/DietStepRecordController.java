@@ -1,12 +1,15 @@
 package cn.qs.controller.user;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.collections.MapUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.time.DateFormatUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,7 +80,7 @@ public class DietStepRecordController {
 
 	@RequestMapping("pages")
 	@ResponseBody
-	public PageInfo<DietStepRecord> pages(@RequestParam Map condition) {
+	public PageInfo<DietStepRecord> pages(@RequestParam Map condition, HttpServletRequest request) {
 		int pageNum = 1;
 		if (ValidateCheck.isNotNull(MapUtils.getString(condition, "pageNum"))) { // 如果不为空的话改变当前页号
 			pageNum = MapUtils.getInteger(condition, "pageNum");
@@ -85,6 +88,9 @@ public class DietStepRecordController {
 		int pageSize = DefaultValue.PAGE_SIZE;
 		if (ValidateCheck.isNotNull(MapUtils.getString(condition, "pageSize"))) { // 如果不为空的话改变当前页大小
 			pageSize = MapUtils.getInteger(condition, "pageSize");
+		}
+		if (!"admin".equals(SystemUtils.getLoginUsername(request))) {
+			condition.put("username", SystemUtils.getLoginUsername(request));
 		}
 
 		// 开始分页
@@ -109,9 +115,8 @@ public class DietStepRecordController {
 
 	@RequestMapping("update")
 	public String update(Integer id, ModelMap map, HttpServletRequest request) {
-		DietStepRecord plan = dietStepRecordService.findById(id);
-		map.addAttribute("plan", plan);
-		map.put("finishs", DefaultValue.FINISH_DATAILS);
+		DietStepRecord record = dietStepRecordService.findById(id);
+		map.addAttribute("record", record);
 
 		return baseFilePath + "/update";
 	}
@@ -121,5 +126,28 @@ public class DietStepRecordController {
 	public JSONResultUtil doUpdate(DietStepRecord record) {
 		dietStepRecordService.update(record);
 		return JSONResultUtil.ok();
+	}
+
+	@RequestMapping("getStepSequence")
+	public String getStepSequence(ModelMap map, HttpServletRequest request) {
+		String loginUsername = SystemUtils.getLoginUsername(request);
+
+		Date now = new Date();
+		// Date yesterday = DateUtils.addDays(now, -1);
+		String day = DateFormatUtils.format(now, "yyyy-MM-dd");
+		List<Map<String, Object>> sequences = dietStepRecordService.getStepSequence(day);
+		for (Map<String, Object> sequence : sequences) {
+			// 设置默认值为0步
+			if (StringUtils.isBlank(MapUtils.getString(sequence, "stepnumber"))) {
+				sequence.put("stepnumber", "0");
+			}
+			// 将当前用户标红
+			if (loginUsername.equals(MapUtils.getString(sequence, "username"))) {
+				sequence.put("fullname", "<font color='red'>" + MapUtils.getString(sequence, "fullname") + "</font>");
+			}
+		}
+		map.put("sequences", sequences);
+
+		return baseFilePath + "/stepSequence";
 	}
 }

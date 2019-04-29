@@ -18,49 +18,27 @@
   
   <body>
     <div class="x-body layui-anim layui-anim-up">
-        <form class="layui-form" th:object="${plan}">
+        <form class="layui-form" th:object="${record}">
           <input type="hidden" th:field="*{id}"/>
-
-          <div class="layui-form-item">
-              <label for="L_email" class="layui-form-label">
-                  <span class="x-red">*</span>标题
-              </label>
-              <div class="layui-input-inline">
-                  <input type="text" id="L_userfullname" name="plantitle" lay-verify="required"
-                  autocomplete="off" class="layui-input" th:value="*{plantitle}"/>
-              </div>
-          </div>
-          
-          <div class="layui-form-item">
-              <label for="L_username" class="layui-form-label">
-                  <span class="x-red">*</span>计划内容
-              </label>
-              <div class="layui-input-inline">
-                  <textarea name="plancontent" id="test" cols="50" rows="4" style="width:400px;height:100px;" 
-                  	th:text="*{plancontent}"></textarea>
-              </div>
-          </div>
-          
-          <div class="layui-form-item">
-              <label for="L_email" class="layui-form-label">
-                  <span class="x-red"></span>完成情况
-              </label>
-              <div class="layui-input-inline">
-              	<select name="hasfinished" >
-              		<option th:each="finish:${finishs}" th:text="${finish}" th:value="${finish}" th:selected="${plan.hasfinished eq finish}"></option>
-              	</select>
-              </div>
-          </div>
           
           <div class="layui-form-item">
               <label for="L_username" class="layui-form-label">
                   <span class="x-red">*</span>日期
               </label>
               <div class="layui-input-inline">
-                  <input type="text" name="plandate" class="layui-input" id="plandateText" th:value="${#dates.format(plan.plandate, 'yyyy-MM-dd')}"/>
+                  <input type="text" name="remark" class="layui-input" id="plandateText" th:value="*{remark}"/>
               </div>
           </div>
 
+          <div class="layui-form-item">
+              <label for="L_email" class="layui-form-label">
+                  <span class="x-red">*</span>步数
+              </label>
+              <div class="layui-input-inline">
+                  <input class="layui-input" name="stepnumber" type="text" th:value="*{stepnumber}"/>
+              </div>
+          </div>
+          
           <div class="layui-form-item">
               <label for="L_repass" class="layui-form-label">
               </label>
@@ -94,7 +72,7 @@
           //监听提交
           form.on('submit(update)', function(data){
        	    //异步提交数据
-       	    $.post("/userLosePlan/doUpdate.html",data.field,function(response){
+       	    $.post("/dietStep/doUpdate.html",data.field,function(response){
        	    	if(response.success == true){
        	    	  layer.msg("修改成功", {icon: 6},function () {
                       // 获得frame索引
