@@ -38,22 +38,21 @@ public class RecommandServiceImpl implements RecommandService {
 
 			// 过滤基数
 			String healthRadix = StringUtils.defaultString(video.getHealthRadix(), "*");
-			if ("*".equals(healthRadix) || StringUtils.isBlank(healthRadix)) {
-				continue;
-			}
-
-			String[] split = healthRadix.split("-");
-			FloatRange floatRange = new FloatRange(Float.valueOf(split[0]), Float.valueOf(split[1]));
-			if (!floatRange.containsFloat(bMI)) {
-				iterator.remove();
+			if (!"*".equals(bMI) && !"*".equals(healthRadix)) {
+				String[] split = healthRadix.split("-");
+				FloatRange floatRange = new FloatRange(Float.valueOf(split[0]), Float.valueOf(split[1]));
+				if (!floatRange.containsFloat(bMI)) {
+					iterator.remove();
+					continue;
+				}
 			}
 
 			// 过滤身体部位
-			if ("*".equals(body) || "*".equals(video.getBodylocation())) {
-				continue;
-			}
-			if (!body.equals(video.getBodylocation())) {
-				iterator.remove();
+			if (!"*".equals(body) && !"*".equals(video.getBodylocation())) {
+				if (!body.equals(video.getBodylocation())) {
+					iterator.remove();
+					continue;
+				}
 			}
 		}
 
@@ -73,22 +72,21 @@ public class RecommandServiceImpl implements RecommandService {
 
 			// 过滤基数
 			String healthRadix = StringUtils.defaultString(video.getHealthRadix(), "*");
-			if ("*".equals(healthRadix) || StringUtils.isBlank(healthRadix)) {
-				continue;
-			}
-
-			String[] split = healthRadix.split("-");
-			FloatRange floatRange = new FloatRange(Float.valueOf(split[0]), Float.valueOf(split[1]));
-			if (!floatRange.containsFloat(bMI)) {
-				iterator.remove();
+			if (!"*".equals(bMI) && !"*".equals(healthRadix)) {
+				String[] split = healthRadix.split("-");
+				FloatRange floatRange = new FloatRange(Float.valueOf(split[0]), Float.valueOf(split[1]));
+				if (!floatRange.containsFloat(bMI)) {
+					iterator.remove();
+					continue;
+				}
 			}
 
 			// 过滤身体部位
-			if ("*".equals(body) || "*".equals(video.getBodylocation())) {
-				continue;
-			}
-			if (!body.equals(video.getBodylocation())) {
-				iterator.remove();
+			if (!"*".equals(body) && !"*".equals(video.getBodylocation())) {
+				if (!body.equals(video.getBodylocation())) {
+					iterator.remove();
+					continue;
+				}
 			}
 		}
 
