@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.math.FloatRange;
+import org.apache.commons.lang.math.NumberUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -98,6 +99,43 @@ public class RecommandServiceImpl implements RecommandService {
 		}
 
 		return videos;
+	}
+
+	@Override
+	public Video getRecommandVideos(Float bMI, Float plusedHots) {
+		List<Video> videos = videoMapper.selectByExample(null);
+		if (CollectionUtils.isEmpty(videos)) {
+			return null;
+		}
+
+		Iterator<Video> iterator = videos.iterator();
+		while (iterator.hasNext()) {
+			Video video = iterator.next();
+
+			// 过滤基数
+			String healthRadix = StringUtils.defaultString(video.getHealthRadix(), "*");
+			if (!"*".equals(bMI) && !"*".equals(healthRadix)) {
+				String[] split = healthRadix.split("-");
+				FloatRange floatRange = new FloatRange(Float.valueOf(split[0]), Float.valueOf(split[1]));
+				if (!floatRange.containsFloat(bMI)) {
+					iterator.remove();
+					continue;
+				}
+			}
+
+			// 过滤摄入热量
+			String remark1 = video.getRemark1();
+			if ("*".equals(remark1)) {
+				String[] split = remark1.split("-");
+				FloatRange floatRange = new FloatRange(NumberUtils.toFloat(split[0]), NumberUtils.toFloat(split[1]));
+				if (!floatRange.containsFloat(plusedHots)) {
+					iterator.remove();
+					continue;
+				}
+			}
+		}
+
+		return videos.size() > 0 ? videos.get(0) : null;
 	}
 
 }

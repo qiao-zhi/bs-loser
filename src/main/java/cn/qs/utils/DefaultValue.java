@@ -34,6 +34,11 @@ public class DefaultValue {
 	public static final List<String> BMI_VALUES = new ArrayList<String>();
 
 	/**
+	 * 热量范围
+	 */
+	public static final List<String> HOT_VALUES = new ArrayList<String>();
+
+	/**
 	 * 完成情况
 	 */
 	public static final List<String> FINISH_DATAILS = new ArrayList<String>();
@@ -65,6 +70,12 @@ public class DefaultValue {
 		BMI_VALUES.add("18.5-23.9");
 		BMI_VALUES.add("24.0-27.9");
 		BMI_VALUES.add("28.0-100000");
+
+		HOT_VALUES.add("*");
+		HOT_VALUES.add("0-100");
+		HOT_VALUES.add("100-200");
+		HOT_VALUES.add("200-400");
+		HOT_VALUES.add("400-10000");
 
 		FINISH_DATAILS.add("未开始");
 		FINISH_DATAILS.add("进行中");

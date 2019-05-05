@@ -12,8 +12,10 @@ import org.apache.commons.lang.math.FloatRange;
 import org.apache.commons.lang.math.NumberUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import cn.qs.bean.common.Video;
 import cn.qs.bean.user.DietStepRecord;
 import cn.qs.bean.user.UserHealthInfo;
+import cn.qs.service.user.RecommandService;
 import cn.qs.service.user.UserHealthService;
 
 /**
@@ -129,5 +131,22 @@ public class LoseConputeUtils {
 			}
 		}
 		dietStepRecord.setSportsheat(numberFormat.format(sportsHeats) + "卡路里");
+
+		// 3.根据剩余热量和BMI去匹配日推荐视频
+		Float plusedHots = sportsHeats - totalHeats;
+		if (plusedHots < 0) {
+			dietStepRecord.setRecommendvideo("-");
+			return;
+		}
+
+		RecommandService recommandService = SpringBootUtils.getBean(RecommandService.class);
+		Float BMI = userHealthInfo.getHealthRadix() == null ? 0F : userHealthInfo.getHealthRadix();
+		Video recommandVideo = recommandService.getRecommandVideos(BMI, plusedHots);
+		if (recommandVideo == null) {
+			dietStepRecord.setRecommendvideo("-");
+			return;
+		}
+
+		dietStepRecord.setRecommendvideo(recommandVideo.getPath());
 	}
 }

@@ -11,4 +11,6 @@ public interface RecommandService {
 
 	List<LosePlan> getPlans(String body, Float bMI);
 
+	Video getRecommandVideos(Float bMI, Float plusedHots);
+
 }

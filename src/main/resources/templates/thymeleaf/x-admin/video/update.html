@@ -41,6 +41,17 @@
               	</select>
               </div>
           </div>
+          
+          <div class="layui-form-item">
+              <label for="L_email" class="layui-form-label">
+                  <span class="x-red"></span>日剩余热量(卡路里)
+              </label>
+              <div class="layui-input-inline">
+              	<select name="remark1" >
+              		<option th:each="hot:${hots}" th:text="${hot}" th:value="${hot}" th:selected="${video.remark1 eq hot}"></option>
+              	</select>
+              </div>
+          </div>
           <div class="layui-form-item">
               <label for="L_repass" class="layui-form-label">
               </label>

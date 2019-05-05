@@ -65,6 +65,7 @@ public class VideoController {
 	public String add(ModelMap map) {
 		map.put("bodys", DefaultValue.BODY_LOCATIONS);
 		map.put("bmis", DefaultValue.BMI_VALUES);
+		map.put("hots", DefaultValue.HOT_VALUES);
 
 		return baseFilePath + "/add";
 	}
@@ -138,6 +139,7 @@ public class VideoController {
 		map.addAttribute("video", video);
 		map.put("bodys", DefaultValue.BODY_LOCATIONS);
 		map.put("bmis", DefaultValue.BMI_VALUES);
+		map.put("hots", DefaultValue.HOT_VALUES);
 
 		return baseFilePath + "/update";
 	}

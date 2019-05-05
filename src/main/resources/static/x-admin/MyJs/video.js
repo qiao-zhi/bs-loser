@@ -29,6 +29,7 @@ function showTable(pageInfo){
             +'<td>'+replaceNull(objs[i].createtime)+'</td>'
             +'<td>'+replaceNull(objs[i].bodylocation)+'</td>'
             +'<td>'+replaceNull(objs[i].healthRadix)+'</td>'
+            +'<td>'+replaceNull(objs[i].remark1)+'</td>'
             +'<td>';
         
         if("undefined" != typeof admin){
