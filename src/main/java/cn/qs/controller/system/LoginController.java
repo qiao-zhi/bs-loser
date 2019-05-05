@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -30,7 +31,12 @@ public class LoginController {
 	 * @return
 	 */
 	@RequestMapping("login")
-	public String login() {
+	public String login(ModelMap map) {
+		double ceil = Math.ceil(Math.random() * 8);
+		int index  = (int) ceil;
+		String src = "/static/x-admin/images/" + index+".jpg";
+		map.put("src",src);
+		
 		return "login";
 	}
 
