@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 
 import cn.qs.bean.common.LosePlan;
 import cn.qs.bean.common.Video;
+import cn.qs.bean.common.VideoExample;
+import cn.qs.bean.common.VideoExample.Criteria;
 import cn.qs.mapper.common.LosePlanMapper;
 import cn.qs.mapper.common.VideoMapper;
 import cn.qs.service.user.RecommandService;
@@ -26,8 +28,13 @@ public class RecommandServiceImpl implements RecommandService {
 	private LosePlanMapper losePlanMapper;
 
 	@Override
-	public List<Video> getVideos(String body, Float bMI) {
-		List<Video> videos = videoMapper.selectByExample(null);
+	public List<Video> getVideos(String body, Float bMI, String oriname) {
+		VideoExample example = new VideoExample();
+		if (StringUtils.isNotBlank(oriname)) {
+			Criteria criteria = example.createCriteria();
+			criteria.andOrinameLike("%" + oriname + "%");
+		}
+		List<Video> videos = videoMapper.selectByExample(example);
 		if (CollectionUtils.isEmpty(videos)) {
 			return new ArrayList<Video>();
 		}

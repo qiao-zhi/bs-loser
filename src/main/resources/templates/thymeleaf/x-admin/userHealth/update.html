@@ -96,8 +96,10 @@
                   <span class="x-red">*</span>身体状况
               </label>
               <div class="layui-input-inline">
-                  <input type="text" id="L_userfullname" name="healthinfo" lay-verify="required"
-                  autocomplete="off" class="layui-input" th:value="*{healthinfo}"/>
+              	<select name="healthinfo">
+				     <option th:selected="${userHealthInfo.healthinfo eq '健康'}">健康</option>
+				     <option th:selected="${userHealthInfo.healthinfo eq '不健康'}">不健康</option>
+				</select>
               </div>
           </div>  
           

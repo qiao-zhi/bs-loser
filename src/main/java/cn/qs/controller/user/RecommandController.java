@@ -53,13 +53,13 @@ public class RecommandController {
 
 	@RequestMapping("getVideos")
 	@ResponseBody
-	public List<Video> getVideos(@RequestParam String body, HttpServletRequest request) {
+	public List<Video> getVideos(@RequestParam String body,@RequestParam String oriname, HttpServletRequest request) {
 		String loginUsername = SystemUtils.getLoginUsername(request);
 		UserHealthService userHealthService = SpringBootUtils.getBean(UserHealthService.class);
 		UserHealthInfo userHealthInfo = userHealthService.findOrCreateUserHealthInfoByUsername(loginUsername);
 		Float BMI = userHealthInfo.getHealthRadix() == null ? 0F : userHealthInfo.getHealthRadix();
 
-		List<Video> rsults = recommandService.getVideos(body, BMI);
+		List<Video> rsults = recommandService.getVideos(body, BMI,oriname);
 		return rsults;
 	}
 

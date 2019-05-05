@@ -7,7 +7,10 @@ $(function(){
 function queryVideos(){
     $.ajax({
        url:pageUrl,
-       data:{"body":$("#body").val()},
+       data:{
+    	   "body":$("#body").val(),
+    	   "oriname":$("#oriname").val()
+    	   },
        dataType:'json',
         type:'post',
         async:true,

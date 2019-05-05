@@ -43,6 +43,9 @@
               		<option th:each="body:${bodys}" th:text="${body}" th:value="${body}"></option>
               	</select>
               </div>
+              <div class="layui-input-inline">
+              	<input type="text" name="oriname" id="oriname" onchange="queryVideos()" placeholder="请输入文件名" autocomplete="off" class="layui-input"/>
+              </div>
           </div>
       </form>
       
