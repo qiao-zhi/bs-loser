@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  
+ 	 <head>
+	    <meta charset="UTF-8"/>
+	    <title>欢迎页面-X-admin2.0</title>
+	    <meta name="renderer" content="webkit"/>
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+	    <link rel="shortcut icon" href="/static/x-admin/favicon.ico" type="image/x-icon" />
+	    <link rel="stylesheet" th:href="${#httpServletRequest.getContextPath()+'/static/x-admin/css/font.css'}"/>
+	    <link rel="stylesheet" th:href="${#httpServletRequest.getContextPath()+'/static/x-admin/css/xadmin.css'}"/>
+    </head>
+    
+    <!--自己写的JS  -->
+   	<script type="text/javascript" th:src="${#httpServletRequest.getContextPath()+'/static/js/jquery.min.js'}"></script>
+    <script type="text/javascript" th:src="${#httpServletRequest.getContextPath()+'/static/x-admin/MyJs/PublicFunctions.js'}"></script>
+    <script type="text/javascript" th:src="${#httpServletRequest.getContextPath()+'/static/x-admin/MyJs/report.js'}"></script>
+    
+    <body>
+        <div class="x-body">
+            <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+            <div id="main" style="width: 100%;height:400px;"></div>
+        </div>
+	    <script type="text/javascript" th:src="${#httpServletRequest.getContextPath()+'/static/echarts/bmap.min.js'}"></script>
+	    <script type="text/javascript" th:src="${#httpServletRequest.getContextPath()+'/static/echarts/echarts.min.js'}"></script>
+    <script type="text/javascript">
+	    $(function(){
+	    	initPlanFinishDetailPie();
+	    });    
+    </script>
+    </body>
+</html>

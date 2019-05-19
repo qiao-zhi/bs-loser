@@ -78,7 +78,7 @@
                     <i class="iconfont nav_right">&#xe697;</i>
                 </a>
                 <ul class="sub-menu">
-                    <li th:if="${session.user.username} eq 'admin'">
+                    <li>
                         <a _href="/message/addMessage.html">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>录入信息</cite>
@@ -104,6 +104,12 @@
                         <a _href="/userLosePlan/list.html">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>计划列表</cite>
+                        </a>
+                    </li >
+                    <li>
+                        <a _href="/report/planDetailReport.html">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>计划报表</cite>
                         </a>
                     </li >
                 </ul>
@@ -152,6 +158,12 @@
                         <a _href="/dietStep/list.html">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>记录列表</cite>
+                        </a>
+                    </li >
+                    <li>
+                        <a _href="/report/hotReport.html">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>热量报表</cite>
                         </a>
                     </li >
                 </ul>

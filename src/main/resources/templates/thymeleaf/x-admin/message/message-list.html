@@ -14,6 +14,12 @@
     <script type="text/javascript" th:src="${#httpServletRequest.getContextPath()+'/static/x-admin/lib/layui/layui.all.js'}" charset="utf-8"></script>
     <script type="text/javascript" th:src="${#httpServletRequest.getContextPath()+'/static/x-admin/js/xadmin.js'}"></script>
     
+    <script th:inline="javascript">     
+    	/*<![CDATA[*/
+	        var currentUsername = /*[[${session.user.username}]]*/;      
+       	/*]]>*/
+	</script>
+	
     <!--自己写的JS  -->
     <script type="text/javascript" th:src="${#httpServletRequest.getContextPath()+'/static/x-admin/MyJs/PublicFunctions.js'}"></script>
     <script type="text/javascript" th:src="${#httpServletRequest.getContextPath()+'/static/x-admin/MyJs/message_list.js'}"></script>
@@ -51,6 +57,7 @@
             <th>ID</th>
             <th>主题</th>
             <th>创建时间</th>
+            <th>创建人</th>
             <th>操作</th></tr>
         </thead>
         <tbody id="memberTbody">

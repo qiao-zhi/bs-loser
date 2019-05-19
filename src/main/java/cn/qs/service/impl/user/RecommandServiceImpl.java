@@ -125,7 +125,7 @@ public class RecommandServiceImpl implements RecommandService {
 
 			// 过滤摄入热量
 			String remark1 = video.getRemark1();
-			if ("*".equals(remark1)) {
+			if (!"*".equals(remark1)) {
 				String[] split = remark1.split("-");
 				FloatRange floatRange = new FloatRange(NumberUtils.toFloat(split[0]), NumberUtils.toFloat(split[1]));
 				if (!floatRange.containsFloat(plusedHots)) {

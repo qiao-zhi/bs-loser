@@ -32,8 +32,9 @@ function showUsersTable(pageInfo){
             +'<td>'+replaceNull(users[i].id)+'</td>'
             +'<td>'+replaceNull(users[i].name)+'</td>'
             +'<td>'+replaceNull(users[i].createtime)+'</td>'
+            +'<td>'+replaceNull(users[i].messageblank)+'</td>'
             +'<td>';
-	        if("undefined" != typeof admin){
+	        if("undefined" != typeof admin || currentUsername == users[i].messageblank){
 	        	tr+='<a href=javascript:void(0) title="修改" onclick="updateUser('+users[i].id+')"><i class="layui-icon">&#xe642;</i></a>'
 	        		+'<a href=javascript:void(0) title="删除" onclick="deleteUser('+users[i].id+')"><i class="layui-icon">&#xe640;</i></a>'
 	        }

@@ -21,6 +21,7 @@ import cn.qs.bean.common.Message;
 import cn.qs.service.common.MessageService;
 import cn.qs.utils.DefaultValue;
 import cn.qs.utils.JSONResultUtil;
+import cn.qs.utils.SystemUtils;
 import cn.qs.utils.ValidateCheck;
 
 @Controller
@@ -41,6 +42,8 @@ public class MessageController {
 	@ResponseBody
 	public JSONResultUtil doAddMessage(Message message, HttpServletRequest request) {
 		message.setCreatetime(new Date());
+		// 设置录入人用户名
+		message.setMessageblank(SystemUtils.getLoginUsername(request));
 
 		messageService.insert(message);
 		return JSONResultUtil.ok();
