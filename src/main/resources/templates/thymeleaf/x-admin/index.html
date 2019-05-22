@@ -17,7 +17,6 @@
     <script type="text/javascript" th:src="${#httpServletRequest.getContextPath()+'/static/x-admin/js/xadmin.js'}"></script>
     
     <!--自己写的JS  -->
-    <script type="text/javascript" th:src="${#httpServletRequest.getContextPath()+'/static/x-admin/MyJs/index.js'}"></script>
     <span th:if="${session.user.username} eq 'admin'">
     	<script>
     		var admin = true;
@@ -39,7 +38,7 @@
               <dd><a onclick="x_admin_show('切换帐号','http://www.baidu.com')">切换帐号</a></dd> -->
               <dd><a href="/logout.html"  th:href="${#httpServletRequest.getContextPath()+'/logout.html'}">退出</a></dd>
               <dd th:if="${session.user.username} ne 'admin'"><a href="javascript:void(0)"  onclick="updateUser();">账户信息</a></dd>
-              <dd th:if="${session.user.username} ne 'admin'"><a href="javascript:void(0)"  onclick="updateUserHealthinfo();">个人信息</a></dd>
+              <dd th:if="${session.user.username} ne 'admin'"><a href="javascript:void(0)" id="userHealthBtn"  onclick="updateUserHealthinfo();">个人信息</a></dd>
               <dd th:if="${session.user.username} ne 'admin'"><a href="javascript:void(0)"  onclick="getStepSequence();">步数排名</a></dd>
             </dl>
           </li>
@@ -233,5 +232,14 @@
 	    	x_admin_show('今日步数信息',url,600,400);
 	    }
     </script>
+    <span th:if="${needUpdateHealthInfo} eq 'true'">
+    	<script th:inline="javascript">
+    		$(function(){
+    			setTimeout(function(){
+	    			$("#userHealthBtn").click();
+    			},500)
+    		});
+    	</script>
+    </span>
 </body>
 </html>

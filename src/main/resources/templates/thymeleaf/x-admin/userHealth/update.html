@@ -145,7 +145,7 @@
        	    //异步提交数据
        	    $.post("/userHealth/doUpdate.html",data.field,function(response){
        	    	if(response.success == true){
-       	    	  layer.msg("修改成功", {icon: 6},function () {
+       	    	  layer.msg("修改成功,请到推荐信息查看相关视频以及减肥套餐!", {icon: 6,time:4000},function () {
                       // 获得frame索引
                       var index = parent.layer.getFrameIndex(window.name);
                       //关闭当前frame

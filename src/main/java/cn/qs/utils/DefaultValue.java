@@ -2,6 +2,8 @@ package cn.qs.utils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -26,37 +28,37 @@ public class DefaultValue {
 	/**
 	 * 身体位置
 	 */
-	public static final List<String> BODY_LOCATIONS = new ArrayList<String>();
+	public static final List<String> BODY_LOCATIONS = new LinkedList<String>();
 
 	/**
 	 * BMI基数范围
 	 */
-	public static final List<String> BMI_VALUES = new ArrayList<String>();
+	public static final List<String> BMI_VALUES = new LinkedList<String>();
 
 	/**
 	 * 热量范围
 	 */
-	public static final List<String> HOT_VALUES = new ArrayList<String>();
+	public static final List<String> HOT_VALUES = new LinkedList<String>();
 
 	/**
 	 * 完成情况
 	 */
-	public static final List<String> FINISH_DATAILS = new ArrayList<String>();
+	public static final List<String> FINISH_DATAILS = new LinkedList<String>();
 
 	/**
 	 * 食物热量表
 	 */
-	public static final Map<String, Object> FOODS_HEAT = new HashMap<String, Object>();
+	public static final Map<String, Object> FOODS_HEAT = new LinkedHashMap<String, Object>();
 
 	/**
 	 * 食物热量表(提取过的)
 	 */
-	public static final Map<String, String> FOOD_HEAT = new HashMap<String, String>();
+	public static final Map<String, String> FOOD_HEAT = new LinkedHashMap<String, String>();
 
 	/**
 	 * 运动系数
 	 */
-	public static final Map<String, Float> SPORT_K = new HashMap<String, Float>();
+	public static final Map<String, Float> SPORT_K = new LinkedHashMap<String, Float>();
 
 	static {
 		BODY_LOCATIONS.add("*");
