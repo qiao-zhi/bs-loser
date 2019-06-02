@@ -38,7 +38,12 @@ public class MessageServiceImpl implements MessageService {
 
 	@Override
 	public void updateMessage(Message message) {
-		messageMapper.save(message);
+		//解决修改不全问题
+		Message findOne = messageMapper.findOne(message.getId());
+		findOne.setContent(message.getContent());
+		findOne.setName(message.getName());
+		
+		messageMapper.save(findOne);
 	}
 
 	@Override

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ClassDiagram>
+    <Class name="cn.qs.controller.system.Index" x="-57" y="-30">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association
+            destinationClassName="cn.qs.service.user.UserHealthService"
+            endpointName="userHealthService" kind="Simple"/>
+        <Communication destinationClassName="cn.qs.service.user.UserHealthService"/>
+    </Class>
+    <Class name="cn.qs.mapper.user.UserHealthInfoMapper" x="-48" y="394">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="cn.qs.service.user.UserHealthService" x="-68" y="169">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="cn.qs.controller.user.UserHealthInfoController"
+        x="-366" y="-21">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association
+            destinationClassName="cn.qs.service.user.UserHealthService"
+            endpointName="userHealthService" kind="Simple"/>
+        <Communication destinationClassName="cn.qs.service.user.UserHealthService"/>
+    </Class>
+    <Class name="cn.qs.service.impl.user.UserHealthServiceImpl" x="-144" y="259">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Extension destinationClassName="cn.qs.service.user.UserHealthService"/>
+        <Association
+            destinationClassName="cn.qs.mapper.user.UserHealthInfoMapper"
+            endpointName="userHealthInfoMapper" kind="Simple"/>
+        <Communication destinationClassName="cn.qs.mapper.user.UserHealthInfoMapper"/>
+    </Class>
+</ClassDiagram>

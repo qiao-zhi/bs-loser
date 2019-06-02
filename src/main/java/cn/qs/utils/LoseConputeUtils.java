@@ -133,7 +133,7 @@ public class LoseConputeUtils {
 		dietStepRecord.setSportsheat(numberFormat.format(sportsHeats) + "卡路里");
 
 		// 3.根据剩余热量和BMI去匹配日推荐视频
-		Float plusedHots = sportsHeats - totalHeats;
+		Float plusedHots = totalHeats - sportsHeats;
 		if (plusedHots < 0) {
 			dietStepRecord.setRecommendvideo("-");
 			return;
